@@ -14,7 +14,7 @@
           <%= form.text_field :rut, class: "form-control" %>
         </div>
         <div class="field">
-          <%= form.label :tags, "Tags", class:"pl-2 font-weight-bold" %><br />
+          <%= form.label :tags, "Marcas", class:"pl-2 font-weight-bold" %><br />
           <%= form.collection_select :tags, CrimeTag.all,:tag, :tag %>
         </div>
         <div class="field">

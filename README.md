@@ -36,4 +36,4 @@ Por ejemplo: `306;FALSO TEST, PERJURIO O DEN.CALUM. ART.206,209,210,211 Y 212`
 2. En `lib/taks/load_csv.rake` cambiar el nombre del archivo al que corresponda. 
 A modo de ejemplo se incluye un csv llamado `datos.csv` que contiene una muestra
 del total de Marcas.
-3. En consola ejecutar `rake load_csv:marcas`.
+3. En consola ejecutar `rake cargar_csv:marcas`.
