@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="col-6 mx-auto">
+  <h1>Carabineros</h1>
+
+  <table class="table table-striped table-dark table-responsive-sm">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @carabineros.each do |carabinero| %>
+      <tr>
+        <td><%= carabinero.name %></td>
+        <td><%= carabinero.phone %></td>
+        <td><%= carabinero.address %></td>
+        <td><%= carabinero.email %></td>
+        <td><%= link_to 'Show', carabinero, :class => "btn btn-primary" %></td>
+<!--        <td><%#= link_to 'Edit', edit_carabinero_path(carabinero) %></td>-->
+        <td><%= link_to 'Destroy', carabinero, :class => "btn btn-primary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <a class="nav-link float-right btn btn-success" <%= link_to 'Nuevo Carabinero', new_carabinero_path ,:style =>"color:black"%> </a>
+</div>

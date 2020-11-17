@@ -16,13 +16,25 @@
             </li>
             <li class="nav-item">
               <% if signed_in? %>
-                <a class="nav-link" <%=link_to "Nuevo procedimiento", new_crime_path, :style => "color:white"%></a>
+                <% if current_user.Carabinero? || current_user.Fiscal? %>
+                  <a class="nav-link" <%=link_to "Nuevo procedimiento", new_crime_path, :style => "color:white"%></a>
+                <% end %>
               <% end %>
             </li>
+<!--            <li class="nav-item">-->
+              <%# if signed_in? %>
+                <%# if current_user.Admin? %>
+<!--                  <a class="nav-link" <%#=link_to "Agregar usuario", new_user_url , :style => "color:white"%></a>-->
+                <%# end %>
+              <%# end %>
+<!--            </li>-->
             <li class="nav-item">
               <% if signed_in? %>
-                <% if current_user.Admin? %>
-                  <a class="nav-link" <%=link_to "Agregar usuario", new_user_url , :style => "color:white"%></a>
+                <%# if current_user.Admin? %>
+<!--                  <a class="nav-link" <%#=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white"%></a>-->
+                <%# end %>
+                <% if current_user.Carabinero? %>
+                  <a class="nav-link" <%=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white"%></a>
                 <% end %>
               <% end %>
             </li>

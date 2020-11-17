@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @carabinero.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @carabinero.phone %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @carabinero.address %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @carabinero.email %>
+</p>
+
+<p>
+  <strong>Miembro de:</strong>
+  <%= current_user.name%>
+</p>
+
+<%= link_to 'Edit', edit_carabinero_path(@carabinero) %> |
+<%= link_to 'Back', carabineros_path %>

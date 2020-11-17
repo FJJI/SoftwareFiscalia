@@ -4,6 +4,7 @@ class CrimesController < ApplicationController
   # GET /crimes.json
   def index
     @crimes = Crime.all
+    @cops = Carabinero.where(:user_id => current_user.id)
   end
 
   # GET /crimes/1
