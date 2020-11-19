@@ -74,6 +74,6 @@ class CarabinerosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def carabinero_params
-      params.permit(:name, :phone, :address, :email, :user_id)
+      params.fetch(:carabinero, {}).permit(:name, :phone, :address, :email, :user_id)
     end
 end
