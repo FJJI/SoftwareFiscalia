@@ -31,7 +31,7 @@ class CarabinerosController < ApplicationController
 
     respond_to do |format|
       if @carabinero.save
-        format.html { redirect_to @carabinero, notice: 'Carabinero was successfully created.' }
+        format.html { redirect_to @carabinero, notice: 'Usuario de Carabinero creado con exito' }
         format.json { render :show, status: :created, location: @carabinero }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class CarabinerosController < ApplicationController
     @carabinero = Carabinero.find(params[:id])
     respond_to do |format|
       if @carabinero.update(carabinero_params)
-        format.html { redirect_to @carabinero, notice: 'Carabinero was successfully updated.' }
+        format.html { redirect_to @carabinero, notice: 'Usuario de carabinero actualizado con exito' }
         format.json { render :show, status: :ok, location: @carabinero }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class CarabinerosController < ApplicationController
     @carabinero = Carabinero.find(params[:id])
     @carabinero.destroy
     respond_to do |format|
-      format.html { redirect_to carabineros_url, notice: 'Carabinero was successfully destroyed.' }
+      format.html { redirect_to carabineros_url, notice: 'Usuario de carabinero creeado con exito' }
       format.json { head :no_content }
     end
   end
