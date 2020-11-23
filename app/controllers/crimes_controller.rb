@@ -6,7 +6,26 @@ class CrimesController < ApplicationController
     @crimes = Crime.all
     @cops = Carabinero.where(:user_id => current_user.id)
   end
+  def search
+    if params[:q] != ""
+      data = params[:q]
+      @dataa = data
+      if current_person.Admin?
+        @uniformados = Carabinero.where("name LIKE ?","%"+params[:q]+"%")
+        @crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
+        @victimas = Victim.where("name LIKE ?","%"+params[:q]+"%")
+      end
+      if current_person.Carabinero?
+        @crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
 
+      end
+      if current_person.Fiscal?
+        @crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
+        @uniformados = Carabinero.where("name LIKE ?","%"+params[:q]+"%")
+        @victimas = Victim.where("name LIKE ?","%"+params[:q]+"%")
+      end
+    end
+  end
   # GET /crimes/1
   # GET /crimes/1.json
   def show

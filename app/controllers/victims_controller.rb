@@ -25,7 +25,6 @@ class VictimsController < ApplicationController
   # POST /victims.json
   def create
     @victim = Victim.new(victim_params)
-
     respond_to do |format|
       if @victim.save
         if params[:crime_id].present?

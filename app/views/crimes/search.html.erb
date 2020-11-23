@@ -1,0 +1,73 @@
+<h1 style="margin-left: 200px">
+  Resultados de la busqueda " <%= @dataa %> "
+</h1>
+
+<div class="row">
+<div class="col-3">
+
+  <% if !@uniformados.nil? %>
+    <% @uniformados.each do |carabinero|%>
+      <div class="card" style="width: 23rem;">
+        <div class="card-body">
+          <h5 class="card-title">Carabinero</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Numero de carabinero <%= carabinero.id %></h6>
+          <%= render :partial => "carabineros/sshow", :locals => { :carabinero => carabinero }  %>
+        </div>
+      </div>
+
+    <%end %>
+  <%end %>
+
+</div>
+  <div class="col-3">
+
+
+    <% if !@victimas.nil? %>
+      <% @victimas.each do |victim|%>
+        <div class="card" style="width: 23rem;">
+          <%tot = CrimeVictim.where(victim_id:victim.id).count %>
+          <div class="card-body">
+            <h5 class="card-title">Victima</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Aparece en
+              <% if tot >0%>
+                <%= CrimeVictim.where(victim_id:victim.id).pluck(:crime_id) %>
+              <%else %>
+                0 Registros</h6>
+
+            <%end %>
+              </h6>
+              <%= render :partial => "victims/sshow", :locals => { :victim => victim }  %>
+        </div>
+        </div>
+
+  <%end %>
+    <%end %>
+</div>
+  <div class="col-3" >
+
+    <% if !@uniformados.nil? %>
+      <% @uniformados.each do |carabinero|%>
+        <div class="card" style="width: 23rem;">
+          <div class="card-body">
+            <h5 class="card-title">Carabinero</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Numero de carabinero <%= carabinero.id %></h6>
+            <%= render :partial => "carabineros/sshow", :locals => { :carabinero => carabinero }  %>
+          </div>
+        </div>
+      <%end %>
+    <%end %>
+  </div>
+  <div class="col-3" >    <% if !@crimenes.nil? %>
+      <% @crimenes.each do |crime|%>
+
+        <div class="card" style="width: 23rem;">
+          <div class="card-body">
+            <h5 class="card-title">Procedimiento</h5>
+            <h6 class="card-subtitle mb-2 text-muted">N# Folio <%= crime.id %></h6>
+            <%= render :partial => "crimes/sshow", :locals => { :crime => crime }  %>
+          </div>
+        </div>
+      <%end %>
+    <%end %>
+  </div>
+</div>

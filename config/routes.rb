@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root "crimes#index"
   resources :thiefs 
   resources :crimes
+  get "/search", to: "crimes#search"
   get 'newcrimethief', to: "crime_thiefs#new", as: 'new'
   resources :crime_thiefs
   resources :crime_files

@@ -1,0 +1,22 @@
+<div  class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+
+    <p>
+      <strong>Titulo:</strong>
+      <%= crime.title %>
+    </p>
+
+    <p>
+      <strong>Lugar:</strong>
+      <%=crime.place %>
+    </p>
+
+    <p>
+      <strong>Descripcion:</strong>
+      <%= crime.description %>
+    </p>
+
+    <%= link_to 'Revisar', crime_path(crime.id) ,class: ["btn","btn-primary"]%>
+  </div><div class="col-3"></div>
+</div>
