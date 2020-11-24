@@ -22,7 +22,9 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <% if current_user.Carabinero? %>
+    <div class="actions">
+    <%= form.submit "Añadir archivo al procedimiento" %>
+    </div>
+  <% end %>
 <% end %>
