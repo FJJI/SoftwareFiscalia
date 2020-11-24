@@ -82,11 +82,17 @@
             <form id="cbox">
               <h1 class="text-white">Chat</h1>
               <label for="msg" class="text-white"><b>Message</b></label>
-              <textarea placeholder="Type message.." name="msg" required></textarea>
-              <button type="submit" class="btn" id="chbtn">Send</button>
-              <button type="button" class="btn close" id="chbtn" onclick="closeForm()">
-                Close
-              </button>
+                <% @message_crimes.each do |message| %>
+                <% if message.crime_id == @crime.id %>
+                  <tr>
+                    <%= render partial: 'messages/messages_tile', locals: { message: message } %>
+                  </tr>
+                <% end %>
+              <% end %>
+                  <%= link_to "Enviar Mensaje", new_message_path(:crime => @crime.id), class: ["btn", "btn-primary"] %>
+                  <button type="button" class="btn close" id="chbtn" onclick="closeForm()">
+                    Close
+                  </button>
             </form>
           </div>
         </div>

@@ -29,6 +29,9 @@ class CrimesController < ApplicationController
   # GET /crimes/1
   # GET /crimes/1.json
   def show
+    @messages = Message.all
+    @crime_users = User.all
+    @message_crimes = Message.joins(:crime).all
     @tags = CrimeTag.find(@crime.labels)
   end
 
@@ -44,6 +47,7 @@ class CrimesController < ApplicationController
   # POST /crimes
   # POST /crimes.json
   def create
+
     @crime = Crime.new(crime_params)
 
     respond_to do |format|
@@ -99,5 +103,8 @@ class CrimesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def crime_params
       params.fetch(:crime, {}).permit(:title,:labels,:place,:description,:clip, images:[], files:[])
+    end
+    def message_params
+      params.require(:message).permit(:content, :user_id, :crime_id)
     end
 end
