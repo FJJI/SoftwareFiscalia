@@ -124,14 +124,16 @@
                 <th>Acción</th>
                 <%end%>
               <tr>
-                <% criminal_ids = CrimeThief.where(crime_id:@crime.id).pluck(:thief_id)%>
-                <% Thief.where(id:criminal_ids).each do |criminal|%>
+                <% criminals = CrimeThief.where(crime_id:@crime.id).pluck(:thief_id, :pronunciado)%>
+                <% criminals.each do |crim| %>
                 <tr>
-                  <td><%= criminal.rut%></td>
-                  <td><%= criminal.name%></td>
-                  <td><%= criminal.tags%></td>
+                  <td><%= Thief.where(id:crim[0]).pluck(:rut)[0]%></td>
+                  <td><%= Thief.where(id:crim[0]).pluck(:name)[0]%></td>
+                  <td><%= Thief.where(id:crim[0]).pluck(:tags)[0]%></td>
                   <% if current_user.Fiscal? %>
-                    <td><%= link_to "Pronunciarce", @crime,:class => "btn btn-primary"%></td>
+                    <% if !crim[1] %>
+                      <td><%= link_to "Pronunciarce", @crime,:class => "btn btn-primary"%></td>
+                    <%end%>
                   <%end%>
                 <tr>
               <%end%>
