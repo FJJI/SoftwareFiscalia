@@ -3,27 +3,29 @@
 </h1>
 
 <div class="row">
-<div class="col-3">
 
   <% if !@uniformados.nil? %>
-    <% @uniformados.each do |carabinero|%>
+    <div class="col-3">
+<% @uniformados.each do |carabinero|%>
       <div class="card" style="width: 23rem;">
         <div class="card-body">
-          <h5 class="card-title">Carabinero</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Numero de carabinero <%= carabinero.id %></h6>
+          <h5 class="card-title">Unidad policial</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Numero <%= carabinero.id %></h6>
           <%= render :partial => "carabineros/sshow", :locals => { :carabinero => carabinero }  %>
         </div>
       </div>
 
     <%end %>
+</div>
   <%end %>
 
-</div>
-  <div class="col-3">
+
 
 
     <% if !@victimas.nil? %>
-      <% @victimas.each do |victim|%>
+    <div class="col-3">
+
+    <% @victimas.each do |victim|%>
         <div class="card" style="width: 23rem;">
           <%tot = CrimeVictim.where(victim_id:victim.id).count %>
           <div class="card-body">
@@ -41,23 +43,29 @@
         </div>
 
   <%end %>
+    </div>
     <%end %>
-</div>
-  <div class="col-3" >
 
-    <% if !@uniformados.nil? %>
-      <% @uniformados.each do |carabinero|%>
-        <div class="card" style="width: 23rem;">
-          <div class="card-body">
-            <h5 class="card-title">Carabinero</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Numero de carabinero <%= carabinero.id %></h6>
-            <%= render :partial => "carabineros/sshow", :locals => { :carabinero => carabinero }  %>
-          </div>
+
+    <% if !@carabineros.nil? %>
+        <div class="col-3" >
+
+          <% @carabineros.each do |carabinero|%>
+            <div class="card" style="width: 23rem;">
+              <div class="card-body">
+                <h5 class="card-title">Usuario</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Numero Folio <%= carabinero.id %></h6>
+                <%= render :partial => "users/sshow", :locals => { :carabinero => carabinero }  %>
+              </div>
+            </div>
+          <%end %>
+
+
+
         </div>
-      <%end %>
+
     <%end %>
-  </div>
-  <div class="col-3" >    <% if !@crimenes.nil? %>
+    <% if !@crimenes.nil? %>  <div class="col-3" >
       <% @crimenes.each do |crime|%>
 
         <div class="card" style="width: 23rem;">
@@ -68,6 +76,7 @@
           </div>
         </div>
       <%end %>
+</div>
     <%end %>
-  </div>
+
 </div>

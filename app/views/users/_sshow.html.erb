@@ -1,0 +1,25 @@
+<div  class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+
+    <p>
+      <strong>Nombre:</strong>
+      <%= carabinero.name %>
+    </p>
+
+
+    <p>
+      <strong><%= carabinero.job %></strong>
+
+    </p>
+
+    <p>
+      <strong>E-mail:</strong>
+      <%= carabinero.email %>
+    </p>
+
+
+
+    <%= link_to 'Editar carabinero', edit_user_path(carabinero) ,class: ["btn","btn-primary"]%>
+  </div><div class="col-3"></div>
+</div>
