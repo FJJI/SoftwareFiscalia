@@ -138,24 +138,24 @@
                 <tr>
               <%end%>
             </table>
-            <% if current_user.Carabinero? %>
+            <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
                 <%= render partial: 'crime_thiefs/form', locals: {crime_thief: @crimethief} %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
-            <% end %>
+            <%# end %>
           </div>
 
           <div class="card text-white bg-dark mb-3" style="margin-top:20px">
             <div class="card-header">
               <h2>Víctimas</h2>
-              <% if current_user.Carabinero? %>
+              <%# if current_user.Carabinero? %>
                 <div class="float-right">
                 <%= link_to "Registrar", new_victim_path,:class => "btn btn-primary"%>
                 </div>
-              <% end %>
+              <%# end %>
             </div>
             <table class="table table-striped table-dark table-responsive-sm">
               <tr>
@@ -172,14 +172,14 @@
                 <tr>
               <%end%>
             </table>
-            <% if current_user.Carabinero? %>
+            <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
                 <%= render partial: 'crime_victims/form', locals: {crime_victim: @crimevictim} %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
-            <% end %>
+            <%# end %>
           </div>
 
           <div class="card text-white bg-dark mb-3" style="margin-top:20px">
@@ -206,24 +206,24 @@
                 <tr>
               <%end%>
             </table>
-            <% if current_user.Carabinero? %>
+            <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
                 <%= render partial: 'crime_witnesses/form', locals: {crime_witness: @crimewitness} %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
-            <% end %>
+            <%# end %>
           </div>
 
           <div class="card text-white bg-dark mb-3" style="margin-top:20px" id="multi">
             <div class="card-header">
               <h2>Multimedia</h2>
-              <% if current_user.Carabinero? %>
+              <%# if current_user.Carabinero? %>
               <div class="float-right">
                 <%= render partial: 'crime_files/form', locals: {crime_file: @crime_file} %>
               </div>
-              <% end %>
+              <%# end %>
             </div>
             <div class="card-body">
 
