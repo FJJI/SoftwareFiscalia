@@ -29,6 +29,7 @@ class CrimeThiefsController < ApplicationController
     puts(params[:crime_id])
     puts(@crime_thief.thief_id)
     @crime_thief.crime_id = params[:crime_id]
+    @crime_thief.pronunciado = false
     puts("debug")
     @crime = Crime.where(id:@crime_thief.crime_id).first
     respond_to do |format|
@@ -63,6 +64,10 @@ class CrimeThiefsController < ApplicationController
       format.html { redirect_to crime_thiefs_url, notice: 'Procedimiento eliminado con éxito.' }
       format.json { head :no_content }
     end
+  end
+
+  def pronunciado
+    return false
   end
 
   private

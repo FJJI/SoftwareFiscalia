@@ -14,9 +14,13 @@ class CrimesController < ApplicationController
         @uniformados = Carabinero.where("name LIKE ?","%"+params[:q]+"%")
         @crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
         @victimas = Victim.where("name LIKE ?","%"+params[:q]+"%")
+        alll = User.where("name LIKE ?","%"+params[:q]+"%")
+        #@fiscales = alll.where(job:"fiscal")
+        @carabineros = alll
       end
       if current_person.Carabinero?
         @crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
+        @uniformados=  Carabinero.where("name LIKE ?","%"+params[:q]+"%")
 
       end
       if current_person.Fiscal?
@@ -95,12 +99,11 @@ class CrimesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_crime
-      @crime = Crime.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_crime
+    @crime = Crime.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
     def crime_params
       params.fetch(:crime, {}).permit(:title,:labels,:place,:description,:clip, images:[], files:[])
     end
