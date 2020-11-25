@@ -128,7 +128,8 @@
                 <th>Alias</th>
                 <th>Marca</th>
                 <% if current_user.Fiscal? %>
-                <th>Acción</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
                 <%end%>
               <tr>
                 <% criminals = CrimeThief.where(crime_id:@crime.id).pluck(:thief_id, :pronunciado)%>
@@ -139,6 +140,7 @@
                   <td><%= Thief.where(id:crim[0]).pluck(:alias_list)[0]%></td>
                   <td><%= Thief.where(id:crim[0]).pluck(:tags)[0]%></td>
                   <% if current_user.Fiscal? %>
+                    <td><%= Thief.where(id:crim[0]).pluck(:estado)[0]%></td>
                     <% if !crim[1] %>
                       <td>
                         <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">

@@ -30,6 +30,7 @@ class CrimeThiefsController < ApplicationController
     puts(@crime_thief.thief_id)
     @crime_thief.crime_id = params[:crime_id]
     @crime_thief.pronunciado = false
+    @crime_thief.estado = "sin pronunciar"
     puts("debug")
     @crime = Crime.where(id:@crime_thief.crime_id).first
     respond_to do |format|
