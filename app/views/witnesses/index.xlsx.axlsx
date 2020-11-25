@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Testigos") do |sheet|
+  sheet.add_row ["Nombre","Rut","Edad","Descripcion"]
+  @witnesses.each do |witness|
+    sheet.add_row [witness.name,witness.rut,witness.age,witness.detalle]
+  end
+end

@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Imputados") do |sheet|
+  sheet.add_row ["Nombre","Rut","Delito","Alias"]
+  @thiefs.each do |thief|
+    sheet.add_row [thief.name,thief.rut,thief.tags,thief.alias_list]
+  end
+end

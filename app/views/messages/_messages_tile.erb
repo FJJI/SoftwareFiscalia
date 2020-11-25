@@ -1,10 +1,5 @@
 <% @crime_users.each do |user| %>
   <%if user.id == message.user_id %>
-    <% if user_signed_in?%>
-      <td class = text-primary> <b><%= user.name %></b></td>
-    <%else %>
-      <td class = text-primary> <b><%= user.name %></b></td>
-    <%end %>
-    <td class = text-white> <%= message.content %></td>
+    <p class="text-white"><%= user.name %> <%= message.content %></p>
   <% end %>
 <% end %>

@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Procedimiento") do |sheet|
+  sheet.add_row ["Titulo del Procedimiento","Marca","Lugar del Hecho","Region","Comuna""Descripcion","Estado"]
+  @crimes.each do |crime|
+    sheet.add_row [crime.title,crime.labels,crime.place,crime.comuna,crime.region,crime.description,crime.estado]
+  end
+end

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_11_25_013750) do
-=======
 ActiveRecord::Schema.define(version: 2020_11_25_023230) do
->>>>>>> 0bbfab241869b2ef7caac4c38260957f29850954
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -110,11 +106,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_023230) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "estado"
-<<<<<<< HEAD
-=======
     t.string "region"
     t.string "comuna"
->>>>>>> 0bbfab241869b2ef7caac4c38260957f29850954
   end
 
   create_table "fiscals", force: :cascade do |t|

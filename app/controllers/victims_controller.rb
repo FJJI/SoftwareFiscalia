@@ -5,6 +5,14 @@ class VictimsController < ApplicationController
   # GET /victims.json
   def index
     @victims = Victim.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers[
+            'Content-Disposition'
+        ] = "attachment; filename='Victimas.xlsx'"
+      }
+      format.html { render :index }
+      end
   end
 
   # GET /victims/1

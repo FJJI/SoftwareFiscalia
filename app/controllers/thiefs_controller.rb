@@ -5,6 +5,14 @@ class ThiefsController < ApplicationController
   # GET /thiefs.json
   def index
     @thiefs = Thief.all
+    respond_to do |format|
+      format.xlsx {
+        response.headers[
+            'Content-Disposition'
+        ] = "attachment; filename='Imputados.xlsx'"
+      }
+      format.html { render :index }
+    end
   end
 
   # GET /thiefs/1

@@ -5,6 +5,16 @@ class CrimeVictimsController < ApplicationController
   # GET /crime_victims.json
   def index
     @crime_victims = CrimeVictim.all
+    @crime_victim = CrimeVictim.where(:crime_id => params[:crime])
+    @victim_excel = Victim.where(id:@crime_victim.victim_id)
+    respond_to do |format|
+      format.xlsx {
+        response.headers[
+            'Content-Disposition'
+        ] = "attachment; filename='Victimas.xlsx'"
+      }
+      format.html { render :index }
+    end
   end
 
   # GET /crime_victims/1
