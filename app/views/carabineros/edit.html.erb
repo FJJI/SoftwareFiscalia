@@ -1,6 +1,11 @@
-<h1>Editing Carabinero</h1>
-
+<head>
+  <h2 style="text-align: center; padding: 3%">Editar carabinero</h2>
+</head>
+<body>
 <%= render 'form', carabinero: @carabinero %>
-
-<%= link_to 'Show', @carabinero %> |
-<%= link_to 'Back', carabineros_path %>
+<div class="row">
+  <div class="column mx-auto">
+    <%= link_to 'Back', carabineros_path %>
+  </div>
+</div>
+</body>

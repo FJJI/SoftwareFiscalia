@@ -1,49 +1,57 @@
+<body>
 <%= form_with(model: fiscal, local: true) do |form| %>
-  <% if fiscal.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(fiscal.errors.count, "error") %> prohibited this fiscal from being saved:</h2>
+  <div class="container-fluid">
+    <div class="row justify-content-center custom-margin">
+      <div class="col-sm-6 col-md-4 ">
+      <% if fiscal.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(fiscal.errors.count, "error") %> prohibited this fiscal from being saved:</h2>
 
-      <ul>
-        <% fiscal.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <ul>
+            <% fiscal.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :name, class:"pl-2 font-weight-bold" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :phone, class:"pl-2 font-weight-bold" %>
+        <%= form.text_field :phone, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :address, class:"pl-2 font-weight-bold" %>
+        <%= form.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :email, class:"pl-2 font-weight-bold" %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+
+      <div>
+        <% if signed_in? %>
+          <% if current_user.Admin? %>
+            <%= form.label :user_id, class:"pl-2 font-weight-bold" %>
+            <%= form.collection_select :user_id, User.all,:id, :name %>
+          <% end %>
+          <% if current_user.Fiscal? %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+          <% end %>
         <% end %>
-      </ul>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Registrar fiscal", class: "btn btn-outline-success mt-3 btn-block shadow-sm font-weight-bold" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <% if signed_in? %>
-      <% if current_user.Admin? %>
-        <%= form.label :user_id %>
-        <%= form.collection_select :user_id, User.all,:id, :name %>
-      <% end %>
-      <% if current_user.Fiscal? %>
-        <%= form.hidden_field :user_id, value: current_user.id %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>
+</body>
