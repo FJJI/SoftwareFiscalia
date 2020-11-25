@@ -144,13 +144,13 @@
                   <td><%= Thief.where(id:crim[0]).pluck(:alias_list)[0]%></td>
                   <td><%= Thief.where(id:crim[0]).pluck(:tags)[0]%></td>
                   <% if current_user.Fiscal? %>
-                    <td><%= Thief.where(id:crim[0]).pluck(:estado)[0]%></td>
+                    <td><%= CrimeThief.where(id:crim[0]).pluck(:estado)[0]%></td>
                     <% if !crim[1] %>
                       <td>
                         <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
                           Pronunciarse
                         </button>
-                        <%= render partial: 'crimes/modal', locals: {thief: Thief.where(id:crim[0])[0]} %>
+                        <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %>
                       </td>
                     <% else %>
                       <td>
