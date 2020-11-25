@@ -69,6 +69,8 @@
     <div class="container-fluid">
       <h1 class="container-fluid col-6">Caso N°<%= @crime.id%> <%= @crime.title%></h1>
       <h5 class="container-fluid col-6">Marca: <%= @tags.tag%></h5>
+      <h6 class="container-fluid col-6">Fiscal a cargo: alguien<%=# @crime_fiscal.name%></h6>
+      <h6 class="container-fluid col-6">Carabinero a cargo: alguien<%=# @crime_carabinero.name%></h6>
       <h6 class="container-fluid col-6">Lugar del hecho: <%= @crime.place%></h6>
     </div>
     <br>
