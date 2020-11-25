@@ -10,10 +10,9 @@
   <div class="card-body">
     <h5 class="card-title"> Cantidad de <strong>Fiscales</strong> por regiones</h5>
     <p class="card-text">A continuacion se muestran las regiones y sus respectivos fiscales</p>
-    <% ere = User.where(job:"Fiscal") %>
     <%Region.all.each do |region|%>
-    <% ere2 = ere.where(region:region.region).pluck(:id)%>
-    <li class="list-group-item"><p><%=region.region%></p>#<% if ere2.nil?%><%= Fiscals.where(user_id:ere2).count%><% end %></li>
+    <% tot = User.where(region:region.region)%>
+    <li class="list-group-item"><p><%=region.region%></p>#<% if ere2.nil?%><%= tot.where(job:"Fiscal").count%><% end %></li>
     <% end %>
      </div>
 
@@ -149,7 +148,8 @@
     <h5 class="card-title"> Cantidad de <strong>Unidades policiales</strong> por regiones</h5>
     <p class="card-text">A continuacion se muestran las regiones y sus respectivas unidades policiales</p>
     <%Region.all.each do |region|%>
-    <li class="list-group-item"><p><%=region.region%></p># <%= User.where(region:region.region).count%></li>
+    <% tot = User.where(region:region.region)%>
+    <li class="list-group-item"><p><%=region.region%></p># <%= tot.where(job:"Carabinero").count%></li>
     <% end %>
      </div>
 
