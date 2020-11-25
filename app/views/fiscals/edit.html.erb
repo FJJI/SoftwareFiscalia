@@ -1,6 +1,11 @@
-<h1>Editing Fiscal</h1>
-
+<head>
+  <h2 style="text-align: center; padding: 3%">Editar fiscal</h2>
+</head>
+<body>
 <%= render 'form', fiscal: @fiscal %>
-
-<%= link_to 'Show', @fiscal %> |
-<%= link_to 'Back', fiscals_path %>
+<div class="row">
+  <div class="column mx-auto">
+    <%= link_to 'Back', fiscals_path %>
+  </div>
+</div>
+</body>
