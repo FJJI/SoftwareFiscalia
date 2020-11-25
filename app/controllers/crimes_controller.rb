@@ -106,7 +106,7 @@ class CrimesController < ApplicationController
   end
 
     def crime_params
-      params.fetch(:crime, {}).permit(:title,:labels,:place,:description,:clip, images:[], files:[])
+      params.fetch(:crime, {}).permit(:title,:labels,:place,:description,:comuna, :region ,:clip, images:[], files:[])
     end
     def message_params
       params.require(:message).permit(:content, :user_id, :crime_id)

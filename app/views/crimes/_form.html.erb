@@ -18,6 +18,14 @@
           <%= form.text_field :place, class: "form-control" %>
         </div>
         <div class="field">
+          <%= form.label :region, "Region", class:"pl-2 font-weight-bold" %><br />
+          <%= form.collection_select :region, Region.all,:region, :region %>
+        </div>
+        <div class="field">
+          <%= form.label :comuna, "Comuna", class:"pl-2 font-weight-bold" %><br />
+          <%= form.collection_select :comuna, Comuna.all,:comuna, :comuna %>
+        </div>
+        <div class="field">
           <%= form.label :description, "Relato", class:"pl-2 font-weight-bold" %><br />
           <%= form.text_area :description , class: "form-control" %>
         </div>
