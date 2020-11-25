@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_004017) do
+ActiveRecord::Schema.define(version: 2020_11_25_013418) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2020_11_25_004017) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_carabineros_on_user_id"
+  end
+
+  create_table "comunas", force: :cascade do |t|
+    t.string "comuna"
+    t.integer "region_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_comunas_on_region_id"
   end
 
   create_table "crime_files", force: :cascade do |t|
@@ -108,6 +116,12 @@ ActiveRecord::Schema.define(version: 2020_11_25_004017) do
     t.integer "crime_id"
   end
 
+  create_table "regions", force: :cascade do |t|
+    t.string "region"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "thiefs", force: :cascade do |t|
     t.string "name"
     t.string "rut"
@@ -153,6 +167,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_004017) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carabineros", "users"
+  add_foreign_key "comunas", "regions"
   add_foreign_key "crime_files", "crimes"
   add_foreign_key "crime_files", "users"
   add_foreign_key "crime_thiefs", "crimes"
