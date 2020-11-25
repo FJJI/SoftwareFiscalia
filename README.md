@@ -39,7 +39,7 @@ del total de Marcas.
 3. En consola ejecutar `rake cargar_csv:marcas`.
 
 ### Para cargar Regiones y comunas:
-El archivo debe estar en el siguiente formato: `region,comunaA,comunaB`.\
+El archivo debe estar en el siguiente formato: `region,comunaA,comunaB`.
 
 1. Agregar archivo csv al directorio app/assets/RegionesYComunas/
 
