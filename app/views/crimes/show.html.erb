@@ -125,6 +125,7 @@
               <tr>
                 <th>Rut</th>
                 <th>Nombre</th>
+                <th>Alias</th>
                 <th>Marca</th>
                 <% if current_user.Fiscal? %>
                 <th>Acción</th>
@@ -135,10 +136,21 @@
                 <tr>
                   <td><%= Thief.where(id:crim[0]).pluck(:rut)[0]%></td>
                   <td><%= Thief.where(id:crim[0]).pluck(:name)[0]%></td>
+                  <td><%= Thief.where(id:crim[0]).pluck(:alias_list)[0]%></td>
                   <td><%= Thief.where(id:crim[0]).pluck(:tags)[0]%></td>
                   <% if current_user.Fiscal? %>
                     <% if !crim[1] %>
-                      <td><%= link_to "Pronunciarce", @crime,:class => "btn btn-primary"%></td>
+                      <td>
+                        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                          Pronunciarse
+                        </button>
+                      </td>
+                    <% else %>
+                      <td>
+                        <button type="button" class="btn btn-primary disabled" data-toggle="button" aria-pressed="false" autocomplete="off">
+                          Listo
+                        </button>
+                      </td>
                     <%end%>
                   <%end%>
                 <tr>

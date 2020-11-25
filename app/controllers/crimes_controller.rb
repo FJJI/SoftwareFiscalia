@@ -53,6 +53,7 @@ class CrimesController < ApplicationController
   def create
 
     @crime = Crime.new(crime_params)
+    @crime.estado = "borrador"
 
     respond_to do |format|
       if @crime.save
