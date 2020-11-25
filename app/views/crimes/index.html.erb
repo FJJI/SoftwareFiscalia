@@ -12,7 +12,7 @@
     <p class="card-text">A continuacion se muestran las regiones y sus respectivos fiscales</p>
     <%Region.all.each do |region|%>
     <% tot = User.where(region:region.region)%>
-    <li class="list-group-item"><p><%=region.region%></p>#<% if ere2.nil?%><%= tot.where(job:"Fiscal").count%><% end %></li>
+    <li class="list-group-item"><p><%=region.region%></p>#<%= tot.where(job:"Fiscal").count%> </li>
     <% end %>
      </div>
 
