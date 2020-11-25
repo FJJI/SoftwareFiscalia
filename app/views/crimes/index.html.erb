@@ -1,122 +1,213 @@
+
 <p id="notice"><%= notice %></p>
 <div class="row">
-<div class="col-3"></div>
-<div class="col-6">
+<div class="col-3">
+  <% if signed_in? %>
+    <% if current_user.Admin?%>
 
-<% if signed_in? %>
-  <% if current_user.Fiscal? || current_user.Carabinero?%>
-    <h1>Procedimientos activos</h1>
+ <div class="card">
+  <h2 class="card-header h2">Estadistica del sistema</h2>
+  <div class="card-body">
+    <h5 class="card-title"> Cantidad de <strong>Fiscales</strong> por regiones</h5>
+    <p class="card-text">A continuacion se muestran las regiones y sus respectivos fiscales</p>
+    <% ere = User.where(job:"Fiscal") %>
+    <%Region.all.each do |region|%>
+    <% ere2 = ere.where(region:region.region).pluck(:id)%>
+    <li class="list-group-item"><p><%=region.region%></p>#<% if ere2.nil?%><%= Fiscals.where(user_id:ere2).count%><% end %></li>
+    <% end %>
+     </div>
 
-    <table class="table table-striped table-dark table-responsive-sm">
-      <thead>
-        <tr>
-          <th >Folio</th>
-          <th >Fecha creación</th>
-          <th >Nº Imputados</th>
-          <th>Fecha modificación</th>
-          <% if signed_in? %>
-          <th>Editar</th>
-          <th>Ver</th>
-          <% end %>
-        </tr>
-      </thead>
+        </div>
+    <% end %>
+    <% end %>
 
-      <tbody>
-        <% @crimes.each do |crime| %>
+</div>
+<div class="col-5">
+  <% if signed_in? %>
+    <% if current_user.Fiscal? || current_user.Carabinero?%>
+      <h1>Procedimientos activos</h1>
+
+      <table class="table table-striped table-dark table-responsive-sm">
+        <thead>
           <tr>
-            <td><%= crime.id %></td>
-            <td><%= crime.created_at.to_date %></td>
-            <td><%= CrimeThief.where(crime_id:crime.id).count %></td>
-            <td><%= crime.updated_at.to_date %></td>
+            <th >Folio</th>
+            <th >Fecha creación</th>
+            <th >Nº Imputados</th>
+            <th>Fecha modificación</th>
             <% if signed_in? %>
-              <%# if current_user.Carabinero? %>
-              <td><a class="nav-link" <%= link_to "Editar", edit_crime_path(crime.id),:class => "btn btn-primary"%></a></td>
-              <td><a class="nav-link" <%= link_to "Ver", crime_path(crime.id),:class => "btn btn-success"%></a></td>
-              <%# end %>
+            <th>Editar</th>
+            <th>Ver</th>
             <% end %>
-    <!--        <td><%#= link_to "Editar", edit_crime_path(crime.id),:class => "btn btn-primary"%></td>-->
-    <!--        <td><%#= link_to "Ver", crime_path(crime.id),:class => "btn btn-success"%></td>-->
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <br>
-      <% if signed_in? %>
-        <a class="nav-link float-right btn btn-success" <%= link_to 'Reportar', new_crime_path ,:style =>"color:black"%></a>
-      <% else %>
-      <% end %>
-      <br>
-      <br>
-
-    <% if current_user.Carabinero?%>
-      <h1>Carabineros en la unidad <%= current_user.name %></h1>
-      <table class="table table-striped table-dark table-responsive-sm">
-        <thead>
-        <tr>
-          <th >Nombre</th>
-          <th >Contacto</th>
-          <th >Email</th>
-        </tr>
         </thead>
 
         <tbody>
-        <% @cops.each do |cop| %>
-          <tr>
-            <td><%= cop.name %></td>
-            <td><%= cop.phone %></td>
-            <td><%= cop.email %></td>
-          </tr>
-        <% end %>
+          <% @crimes.each do |crime| %>
+            <tr>
+              <td><%= crime.id %></td>
+              <td><%= crime.created_at.to_date %></td>
+              <td><%= CrimeThief.where(crime_id:crime.id).count %></td>
+              <td><%= crime.updated_at.to_date %></td>
+              <% if signed_in? %>
+                <%# if current_user.Carabinero? %>
+                <td><a class="nav-link" <%= link_to "Editar", edit_crime_path(crime.id),:class => "btn btn-primary"%></a></td>
+                <td><a class="nav-link" <%= link_to "Ver", crime_path(crime.id),:class => "btn btn-success"%></a></td>
+                <%# end %>
+              <% end %>
+      <!--        <td><%#= link_to "Editar", edit_crime_path(crime.id),:class => "btn btn-primary"%></td>-->
+      <!--        <td><%#= link_to "Ver", crime_path(crime.id),:class => "btn btn-success"%></td>-->
+            </tr>
+          <% end %>
         </tbody>
       </table>
-    <% end %>
 
-    <% if current_user.Fiscal?%>
-      <h1>Fiscales pertenecientes a <%= current_user.name %></h1>
-      <table class="table table-striped table-dark table-responsive-sm">
-        <thead>
-        <tr>
-          <th >Nombre</th>
-          <th >Contacto</th>
-          <th >Email</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <% @fiscales.each do |fis| %>
-          <tr>
-            <td><%= fis.name %></td>
-            <td><%= fis.phone %></td>
-            <td><%= fis.email %></td>
-          </tr>
+      <br>
+        <% if signed_in? %>
+          <a class="nav-link float-right btn btn-success" <%= link_to 'Reportar', new_crime_path ,:style =>"color:black"%></a>
+        <% else %>
         <% end %>
-        </tbody>
-      </table>
-    <% end %>
-
-
-  <% end %>
-
-
-  <% if current_user.Admin?%>
-      <div class="d-flex position-fixed" id="sidebar-wrapper">
-        <div class="list-group list-group-flush container-fluid">
-          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Agregar Usuario", new_user_url , :style => "color:white"%> </a>
-          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white"%> </a>
-          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Agregar Fiscal", new_fiscal_path , :style => "color:white"%> </a>
-        </div>
         <br>
-        <div class="list-group list-group-flush container-fluid">
-          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Usuarios", root_path , :style => "color:white"%> </a>
-          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Carabineros", carabineros_path(@cops) , :style => "color:white"%> </a>
-          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Fiscales", fiscals_path(@fiscales) , :style => "color:white"%> </a>
+        <br>
+
+      <% if current_user.Carabinero?%>
+        <h1>Carabineros en la unidad <%= current_user.name %></h1>
+        <table class="table table-striped table-dark table-responsive-sm">
+          <thead>
+          <tr>
+            <th >Nombre</th>
+            <th >Contacto</th>
+            <th >Email</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @cops.each do |cop| %>
+            <tr>
+              <td><%= cop.name %></td>
+              <td><%= cop.phone %></td>
+              <td><%= cop.email %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+      <% if current_user.Fiscal?%>
+        <h1>Fiscales pertenecientes a <%= current_user.name %></h1>
+        <table class="table table-striped table-dark table-responsive-sm">
+          <thead>
+          <tr>
+            <th >Nombre</th>
+            <th >Contacto</th>
+            <th >Email</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @fiscales.each do |fis| %>
+            <tr>
+              <td><%= fis.name %></td>
+              <td><%= fis.phone %></td>
+              <td><%= fis.email %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+
+    <% end %>
+
+
+    <% if current_user.Admin?%>
+   
+         
+         
+          <div class="card" >
+  <h2 class="card-header h2">Agregar usuarios</h2>
+  <div class="card-body">
+    <h5 class="card-title">Elegir el<strong> tipo</strong> de usuario a crear</h5>
+    <p class="card-text">Los usuarios agregados al sistema tendran accesos segun se permita...</p>
+    <%=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white", class: ["btn","btn-primary"]%>
+    <%=link_to "Agregar Usuario", new_user_url , :style => "color:white", class: ["btn","btn-primary"]%>
+        <%=link_to "Agregar Fiscal", new_fiscal_url , :style => "color:white", class: ["btn","btn-primary"]%>
+
+            </div>
+
         </div>
-      </div>
+
+
+        
+    <% end %>
   <% end %>
-<% end %>
+  <% if signed_in? %>
+    <% if current_user.Admin?%>
+
+ <div class="card" style="margin-top:10px">
+  <h2 class="card-header h2">Estadistica de caraineros</h2>
+  <div class="card-body">
+    <h5 class="card-title"> Cantidad de <strong>Fiscales</strong> por regiones</h5>
+    <p class="card-text">A continuacion se muestran las regiones y sus respectivos carabineros</p>
+     <% ere = User.where(job:"Carabinero") %>
+    <%Region.all.each do |region|%>
+    <% ere2 = ere.where(region:region.region).pluck(:id)%>
+    <li class="list-group-item"><p><%=region.region%></p>#<% if ere2.nil?%><%= Fiscals.where(user_id:ere2).count%><% end %></li>
+    <% end %>
+     </div>
+
+        </div>
+    <% end %>
+    <% end %>
+  </div>
+
+
+<div class="col-4" >
+  <% if signed_in? %>
+
+    <% if current_user.Admin?%>
+<div class="card grey lighten-2" style="margin-right:20px">
+<div class="card-header">
+<h2>Ver Usuarios del sistema</h2>
+</div>
+          <div class="card-body pb-0">
+            <i class="fas fa-cloud fa-3x pb-4"></i>
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 h5">usuarios totales <%= User.count%></p>
+            </div>
+          </div>
+          <hr>
+          <div class="card-body pt-0">
+            <h6 class="font-weight-bold mb-1">Actualizado : </h6>
+              <p class="mb-0 hour"><%= @date_a.strftime("%k:%M")%></p>
+
+          </div>
+            <div class="card-body">
+<h4>Revisar:</h4>
+<div class="card-text" >
+  <%=link_to "Fiscales", fiscals_path(@fiscales) , :style => "color:white", class: ["btn","btn-primary"]%>
+  <%=link_to "Carabineros", carabineros_path(@cops) , :style => "color:white", class: ["btn","btn-primary"]%>
+  <%=link_to "Usuarios", root_path , :style => "color:white", class: ["btn","btn-primary"]%>
+
+</div></div>
+
+        </div>
+<div class="card" style="margin-top:10px">
+  <h2 class="card-header h2">Estadistica de Crimenes</h2>
+  <div class="card-body">
+    <h5 class="card-title"> Cantidad de <strong>Crimenes</strong> por regiones</h5>
+    <p class="card-text">A continuacion se muestran las regiones y sus respectivos crimenes</p>
+    <%Region.all.each do |region|%>
+    <li class="list-group-item"><p><%=region.region%></p>#<%= Crime.where(region:region.region).count %></li>
+    <% end %>
+     </div>
+
+        </div>
 </div>
 
 
-<div class="col-3">
-</div></div>
+    <% end%>
+    <% end%>
+
+  </div>
+  
+</div>

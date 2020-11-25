@@ -9,7 +9,7 @@
 <% @uniformados.each do |carabinero|%>
       <div class="card" style="width: 23rem;">
         <div class="card-body">
-          <h5 class="card-title">Unidad policial</h5>
+          <h5 class="card-title">Carabinero</h5>
           <h6 class="card-subtitle mb-2 text-muted">Numero <%= carabinero.id %></h6>
           <%= render :partial => "carabineros/sshow", :locals => { :carabinero => carabinero }  %>
         </div>
@@ -51,13 +51,15 @@
         <div class="col-3" >
 
           <% @carabineros.each do |carabinero|%>
+          <%if carabinero.job!= "Admin"%>
             <div class="card" style="width: 23rem;">
               <div class="card-body">
-                <h5 class="card-title">Usuario</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Numero Folio <%= carabinero.id %></h6>
+                <h5 class="card-title">Unidad policial</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Numero unidad <%= carabinero.id %></h6>
                 <%= render :partial => "users/sshow", :locals => { :carabinero => carabinero }  %>
               </div>
             </div>
+          <%end %>
           <%end %>
 
 
