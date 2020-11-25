@@ -1,12 +1,11 @@
+<head>
+  <h2 style="text-align: center; padding: 3%">Registrar fiscal</h2>
+</head>
+<body>
+<%= render 'form', fiscal: @fiscal %>
 <div class="row">
-  <div class="col-3">
-  </div>
-  <div class="col-6">
-    <h1>Crear nuevo Fiscal</h1>
-    <%= render 'form', fiscal: @fiscal %>
-
-    <%= link_to 'Back', fiscals_path %>
-  </div>
-  <div class="col-3">
+  <div class="column mx-auto">
+    <%= link_to 'Back', :back %>
   </div>
 </div>
+</body>
