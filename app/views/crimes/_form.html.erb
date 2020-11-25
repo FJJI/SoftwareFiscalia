@@ -10,7 +10,7 @@
           <%= form.text_field :title, class: "form-control" %>
         </div>
         <div class="field">
-          <%= form.label :labels, "Marca", class:"pl-2 font-weight-bold" %><br />
+          <%= form.label :labels, "Delito", class:"pl-2 font-weight-bold" %><br />
           <%= form.collection_select :labels, CrimeTag.all,:id, :tag %>
         </div>
         <div class="field">

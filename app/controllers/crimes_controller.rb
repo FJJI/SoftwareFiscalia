@@ -3,6 +3,8 @@ class CrimesController < ApplicationController
   # GET /crimes
   # GET /crimes.json
   def index
+    require 'date'
+    @date_a = DateTime.now() 
     @crimes = Crime.all
     @cops = Carabinero.where(:user_id => current_user.id)
     @fiscales = Fiscal.where(:user_id => current_user.id)
@@ -20,8 +22,10 @@ class CrimesController < ApplicationController
         @carabineros = alll
       end
       if current_person.Carabinero?
-        @crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
+        total_crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
         @uniformados=  Carabinero.where("name LIKE ?","%"+params[:q]+"%")
+        #unidad = total_crimenes.where(user_id:)
+        @crimenes = total_crimenes.where(:current_person.id)
 
       end
       if current_person.Fiscal?

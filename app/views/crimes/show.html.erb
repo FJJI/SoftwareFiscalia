@@ -68,7 +68,7 @@
     <br>
     <div class="container-fluid">
       <h1 class="container-fluid col-6">Caso N°<%= @crime.id%> <%= @crime.title%></h1>
-      <h5 class="container-fluid col-6">Marca: <%= @tags.tag%></h5>
+      <h5 class="container-fluid col-6">Delito: <%= @tags.tag%></h5>
       <h6 class="container-fluid col-6">Fiscal a cargo: alguien</h6>
       <h6 class="container-fluid col-6">Carabinero a cargo: alguien</h6>
       <h6 class="container-fluid col-6">Lugar del hecho: <%= @crime.place%></h6>
@@ -137,7 +137,7 @@
                 <th>Rut</th>
                 <th>Nombre</th>
                 <th>Alias</th>
-                <th>Marca</th>
+                <th>Delito</th>
                 <% if current_user.Fiscal? %>
                   <th>Estado</th>
                   <th>Acción</th>
@@ -149,15 +149,15 @@
                   <td><%= Thief.where(id:crim[0]).pluck(:rut)[0]%></td>
                   <td><%= Thief.where(id:crim[0]).pluck(:name)[0]%></td>
                   <td><%= Thief.where(id:crim[0]).pluck(:alias_list)[0]%></td>
-                  <td><%= Thief.where(id:crim[0]).pluck(:tags)[0]%></td>
+                  <td><%= CrimeThief.where(thief_id:crim[0]).pluck(:marca)[-1]%></td>
                   <% if current_user.Fiscal? %>
-                    <td><%= Thief.where(id:crim[0]).pluck(:estado)[0]%></td>
+                    <td><%= CrimeThief.where(id:crim[0]).pluck(:estado)[0]%></td>
                     <% if !crim[1] %>
                       <td>
                         <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
                           Pronunciarse
                         </button>
-                        <%= render partial: 'crimes/modal', locals: {thief: Thief.where(id:crim[0])[0]} %>
+                        <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %>
                       </td>
                     <% else %>
                       <td>
