@@ -5,6 +5,7 @@ class CrimesController < ApplicationController
   def index
     @crimes = Crime.all
     @cops = Carabinero.where(:user_id => current_user.id)
+    @fiscales = Fiscal.where(:user_id => current_user.id)
   end
   def search
     if params[:q] != ""
@@ -53,7 +54,6 @@ class CrimesController < ApplicationController
   def create
 
     @crime = Crime.new(crime_params)
-    @crime.estado = "borrador"
 
     respond_to do |format|
       if @crime.save

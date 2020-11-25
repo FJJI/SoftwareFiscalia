@@ -12,6 +12,7 @@ class CarabinerosController < ApplicationController
   # GET /carabineros/1.json
   def show
     @carabinero = Carabinero.find(params[:id])
+    @pertenece = User.find_by(id: @carabinero.user_id)
   end
 
   # GET /carabineros/new

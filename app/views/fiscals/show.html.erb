@@ -1,0 +1,33 @@
+<div  class="row">
+<div class="col-3"></div>
+<div class="col-6">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @fiscal.name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @fiscal.phone %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @fiscal.address %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @fiscal.email %>
+</p>
+
+<p>
+  <strong>Miembro de:</strong>
+  <%= @pertenece.name%>
+</p>
+
+<%= link_to 'Editar fiscal', edit_fiscal_path(@fiscal),class: ["btn","btn-primary"] %>
+</div><div class="col-3"></div>
+</div>

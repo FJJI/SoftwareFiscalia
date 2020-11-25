@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fiscals
   resources :carabineros
   resources :crime_witnesses
   resources :crime_victims

@@ -71,17 +71,46 @@
         </tbody>
       </table>
     <% end %>
+
+    <% if current_user.Fiscal?%>
+      <h1>Fiscales pertenecientes a <%= current_user.name %></h1>
+      <table class="table table-striped table-dark table-responsive-sm">
+        <thead>
+        <tr>
+          <th >Nombre</th>
+          <th >Contacto</th>
+          <th >Email</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @fiscales.each do |fis| %>
+          <tr>
+            <td><%= fis.name %></td>
+            <td><%= fis.phone %></td>
+            <td><%= fis.email %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+
   <% end %>
+
+
   <% if current_user.Admin?%>
       <div class="d-flex position-fixed" id="sidebar-wrapper">
         <div class="list-group list-group-flush container-fluid">
           <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Agregar Usuario", new_user_url , :style => "color:white"%> </a>
           <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white"%> </a>
+          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Agregar Fiscal", new_fiscal_path , :style => "color:white"%> </a>
         </div>
         <br>
         <div class="list-group list-group-flush container-fluid">
           <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Usuarios", root_path , :style => "color:white"%> </a>
           <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Carabineros", carabineros_path(@cops) , :style => "color:white"%> </a>
+          <a class="list-group-item list-group-item-action bg-dark text-white font-italic" <%=link_to "Fiscales", fiscals_path(@fiscales) , :style => "color:white"%> </a>
         </div>
       </div>
   <% end %>
