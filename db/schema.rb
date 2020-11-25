@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_11_25_013750) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -75,6 +74,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_013750) do
     t.integer "thief_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "pronunciado"
+    t.string "estado"
     t.index ["crime_id"], name: "index_crime_thiefs_on_crime_id"
     t.index ["thief_id"], name: "index_crime_thiefs_on_thief_id"
   end
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_013750) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "estado"
   end
 
   create_table "fiscals", force: :cascade do |t|
@@ -138,6 +140,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_013750) do
     t.string "alias_list"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "estado"
   end
 
   create_table "users", force: :cascade do |t|
