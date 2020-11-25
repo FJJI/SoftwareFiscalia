@@ -5,6 +5,12 @@
   <% thiefs = Thief.all %>
   <%= form.collection_select :thief_id, thiefs.order(:name),:id,:name, include_blank: true %>
 </li>
+
+<li style="list-style: none">
+  <% tag = CrimeTag.all %>
+  <%= form.collection_select :marca, tag.order(:tag),:tag,:tag, include_blank: true %>
+</li>
+
 <%# end %>
 <%= hidden_field_tag 'crime_id', @crime.id  %>
 <%= %>
