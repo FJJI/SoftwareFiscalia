@@ -123,7 +123,7 @@
    
          
          
-          <div class="card" >
+          <div class="card" >                            
   <h2 class="card-header h2">Agregar usuarios</h2>
   <div class="card-body">
     <h5 class="card-title">Elegir el<strong> tipo</strong> de usuario a crear</h5>
@@ -144,14 +144,12 @@
     <% if current_user.Admin?%>
 
  <div class="card" style="margin-top:10px">
-  <h2 class="card-header h2">Estadistica de caraineros</h2>
+  <h2 class="card-header h2">Estadistica de Unidades policiales</h2>
   <div class="card-body">
-    <h5 class="card-title"> Cantidad de <strong>Fiscales</strong> por regiones</h5>
-    <p class="card-text">A continuacion se muestran las regiones y sus respectivos carabineros</p>
-     <% ere = User.where(job:"Carabinero") %>
+    <h5 class="card-title"> Cantidad de <strong>Unidades policiales</strong> por regiones</h5>
+    <p class="card-text">A continuacion se muestran las regiones y sus respectivas unidades policiales</p>
     <%Region.all.each do |region|%>
-    <% ere2 = ere.where(region:region.region).pluck(:id)%>
-    <li class="list-group-item"><p><%=region.region%></p>#<% if ere2.nil?%><%= Fiscals.where(user_id:ere2).count%><% end %></li>
+    <li class="list-group-item"><p><%=region.region%></p># <%= User.where(region:region.region).count%></li>
     <% end %>
      </div>
 
