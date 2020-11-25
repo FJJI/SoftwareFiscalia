@@ -79,6 +79,6 @@ class CrimeThiefsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def crime_thief_params
-      params.fetch(:crime_thief, {}).permit(:thief_id,:crime_id)
+      params.fetch(:crime_thief, {}).permit(:thief_id,:crime_id, :marca)
     end
 end
