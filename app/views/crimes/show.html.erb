@@ -56,7 +56,7 @@
       opacity: 0.8;
     }
     #cbox .close {
-      background-color: red;
+      background-color: #ff0000;
     }
     #chbtn:hover, .openChatBtn:hover {
       opacity: 1;
@@ -68,7 +68,16 @@
     <br>
     <div class="container-fluid">
       <h1 class="container-fluid col-6">Caso N°<%= @crime.id%> <%= @crime.title%></h1>
+        <% if @crime.estado == "Borrador"%>
+          <h5 class="container-fluid col-6"><%=link_to "Confirmar Borrador",btop_path(@crime.id),class: ["btn", "btn-success"]%></h5>
+    <%end %>
+      <% if current_user.job == "Fiscal"%>
+        <% if @crime.estado == "Pendiente"%>
+          <h5 class="container-fluid col-6"><%=link_to "Cerrar Caso",btop_path(@crime.id),class: ["btn", "btn-success"]%></h5>
+        <%end %>
+      <%end %>
       <h5 class="container-fluid col-6">Delito: <%= @tags.tag%></h5>
+      <h5 class="container-fluid col-6">Estado: <%= @crime.estado%></h5>
 <!--      <h6 class="container-fluid col-6">Fiscal a cargo: alguien</h6>-->
 <!--      <h6 class="container-fluid col-6">Carabinero a cargo: alguien</h6>-->
       <h6 class="container-fluid col-6">Lugar del hecho: <%= @crime.place%></h6>
@@ -310,7 +319,7 @@
                     <% else %>
                       <td><h2>SIN CONTENIDO</h2></td>
                     <% end %>
-                    <td><%= link_to 'Eliminar',file,method: :DELETE ,class: ["btn", "btn-danger"]%></td>
+                    <td><%= link_to 'Eliminar',file,method: :DELETE ,:data => { :foo_bar => 'Seguro que desea borrar el Archivo?, tu usario sera responasble visible para esta accion' },class: ["btn", "btn-danger"]%></td>
                 <% end %>
                 </tr>
               </table>

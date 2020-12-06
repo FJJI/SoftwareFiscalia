@@ -1,0 +1,27 @@
+<%= form_with(model: ufc, local: true) do |form| %>
+  <% if ufc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ufc.errors.count, "error") %> prohibited this ufc from being saved:</h2>
+
+      <ul>
+        <% ufc.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fiscals_id , class:"pl-2 font-weight-bold" %>
+    <%= form.collection_select :fiscals_id, Fiscal.all,:id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :carabineros_id , class:"pl-2 font-weight-bold" %>
+    <%= form.collection_select :carabineros_id, Carabinero.all,:id, :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

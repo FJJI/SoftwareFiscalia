@@ -13,10 +13,7 @@
           <%= form.label :labels, "Delito", class:"pl-2 font-weight-bold" %><br />
           <%= form.collection_select :labels, CrimeTag.all,:id, :tag %>
         </div>
-        <div class="field">
-          <%= form.label :place, "Lugar", class:"pl-2 font-weight-bold" %><br />
-          <%= form.text_field :place, class: "form-control" %>
-        </div>
+
         <div class="field">
           <%= form.label :region, "Region", class:"pl-2 font-weight-bold" %><br />
           <%= form.collection_select :region, Region.all,:region, :region %>
@@ -25,6 +22,11 @@
           <%= form.label :comuna, "Comuna", class:"pl-2 font-weight-bold" %><br />
           <%= form.collection_select :comuna, Comuna.all,:comuna, :comuna %>
         </div>
+        <div class="field">
+          <%= form.label :place, "Lugar", class:"pl-2 font-weight-bold" %><br />
+          <%= form.text_field :place, class: "form-control" %>
+        </div>
+
         <div class="field">
           <%= form.label :description, "Relato", class:"pl-2 font-weight-bold" %><br />
           <%= form.text_area :description , class: "form-control" %>

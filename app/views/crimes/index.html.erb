@@ -33,6 +33,7 @@
             <th >Fecha creación</th>
             <th >Nº Imputados</th>
             <th>Fecha modificación</th>
+            <th>Estado</th>
             <% if signed_in? %>
             <th>Editar</th>
             <th>Ver</th>
@@ -47,6 +48,7 @@
               <td><%= crime.created_at.to_date %></td>
               <td><%= CrimeThief.where(crime_id:crime.id).count %></td>
               <td><%= crime.updated_at.to_date %></td>
+              <td><%= crime.estado %></td>
               <% if signed_in? %>
                 <%# if current_user.Carabinero? %>
                 <td><a class="nav-link" <%= link_to "Editar", edit_crime_path(crime.id),:class => "btn btn-primary"%></a></td>
@@ -127,11 +129,17 @@
   <div class="card-body">
     <h5 class="card-title">Elegir el<strong> tipo</strong> de usuario a crear</h5>
     <p class="card-text">Los usuarios agregados al sistema tendran accesos segun se permita...</p>
-    <%=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white", class: ["btn","btn-primary"]%>
+    <%=link_to "Agregar Unidad Policial", new_carabinero_path , :style => "color:white", class: ["btn","btn-primary"]%>
     <%=link_to "Agregar Usuario", new_user_url , :style => "color:white", class: ["btn","btn-primary"]%>
-        <%=link_to "Agregar Fiscal", new_fiscal_url , :style => "color:white", class: ["btn","btn-primary"]%>
-
+        <%=link_to "Agregar Fiscalia", new_fiscal_url , :style => "color:white", class: ["btn","btn-primary"]%>
+    <%=link_to "establecer union", new_ufc_path , :style => "color:white", class: ["btn","btn-primary"]%>
             </div>
+
+    <div>
+      <h5 class="card-title">Establecer<strong> relaciones</strong> de usuario</h5>
+      <%=link_to "Unir fiscalia con usuario", new_uf_path , :style => "color:white", class: ["btn","btn-primary"]%>
+      <%=link_to "Unir UP con usuario", new_uc_path , :style => "color:white", class: ["btn","btn-primary"]%>
+    </div>
 
         </div>
 
@@ -182,8 +190,8 @@
             <div class="card-body">
 <h4>Revisar:</h4>
 <div class="card-text" >
-  <%=link_to "Fiscales", fiscals_path(@fiscales) , :style => "color:white", class: ["btn","btn-primary"]%>
-  <%=link_to "Carabineros", carabineros_path(@cops) , :style => "color:white", class: ["btn","btn-primary"]%>
+  <%=link_to "Fiscalias", fiscals_path(@fiscales) , :style => "color:white", class: ["btn","btn-primary"]%>
+  <%=link_to "Unidades Policiales", carabineros_path(@cops) , :style => "color:white", class: ["btn","btn-primary"]%>
   <%=link_to "Usuarios", root_path , :style => "color:white", class: ["btn","btn-primary"]%>
 
 </div></div>

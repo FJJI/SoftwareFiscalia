@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @uc.user_id %>
+</p>
+
+<p>
+  <strong>Carabineros:</strong>
+  <%= @uc.carabineros_id %>
+</p>
+
+<%= link_to 'Edit', edit_uc_path(@uc) %> |
+<%= link_to 'Back', ucs_path %>
