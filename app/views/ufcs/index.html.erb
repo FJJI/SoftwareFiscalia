@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ufcs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ufcs.each do |ufc| %>
+      <tr>
+        <td><%= link_to 'Show', ufc %></td>
+        <td><%= link_to 'Edit', edit_ufc_path(ufc) %></td>
+        <td><%= link_to 'Destroy', ufc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ufc', new_ufc_path %>
