@@ -68,11 +68,9 @@
     <br>
     <div class="container-fluid">
       <h1 class="container-fluid col-6">Caso N°<%= @crime.id%> <%= @crime.title%></h1>
-      <% if current_user.job == "Carabinero"%>
         <% if @crime.estado == "Borrador"%>
 
       <h5 class="container-fluid col-6"><%=link_to "Confirmar Borrador",btop_path(@crime.id),class: ["btn", "btn-success"]%></h5>
-        <%end %>
     <%end %>
       <% if current_user.job == "Fiscal"%>
         <% if @crime.estado == "Pendiente"%>
