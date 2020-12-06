@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :ucs
+  resources :ufs
   resources :ufcs
   resources :fiscals
   resources :carabineros

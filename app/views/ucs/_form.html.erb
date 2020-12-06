@@ -1,0 +1,27 @@
+<%= form_with(model: uc, local: true) do |form| %>
+  <% if uc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(uc.errors.count, "error") %> prohibited this uc from being saved:</h2>
+
+      <ul>
+        <% uc.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Usuario" , class:"pl-2 font-weight-bold"%>
+    <%= form.collection_select :user_id, User.all,:id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Unidad Policial" %>
+    <%= form.collection_select :carabineros_id, Carabinero.all,:id, :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

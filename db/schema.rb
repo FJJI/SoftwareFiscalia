@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_204623) do
+ActiveRecord::Schema.define(version: 2020_12_06_232028) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -146,6 +146,15 @@ ActiveRecord::Schema.define(version: 2020_12_06_204623) do
     t.string "estado"
   end
 
+  create_table "ucs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "carabineros_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["carabineros_id"], name: "index_ucs_on_carabineros_id"
+    t.index ["user_id"], name: "index_ucs_on_user_id"
+  end
+
   create_table "ufcs", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -153,6 +162,15 @@ ActiveRecord::Schema.define(version: 2020_12_06_204623) do
     t.integer "carabineros_id"
     t.index ["carabineros_id"], name: "index_ufcs_on_carabineros_id"
     t.index ["fiscals_id"], name: "index_ufcs_on_fiscals_id"
+  end
+
+  create_table "ufs", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "fiscals_id"
+    t.index ["fiscals_id"], name: "index_ufs_on_fiscals_id"
+    t.index ["user_id"], name: "index_ufs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -201,6 +219,10 @@ ActiveRecord::Schema.define(version: 2020_12_06_204623) do
   add_foreign_key "crime_witnesses", "crimes"
   add_foreign_key "crime_witnesses", "witnesses"
   add_foreign_key "fiscals", "users"
+  add_foreign_key "ucs", "carabineros", column: "carabineros_id"
+  add_foreign_key "ucs", "users"
   add_foreign_key "ufcs", "carabineros", column: "carabineros_id"
   add_foreign_key "ufcs", "fiscals", column: "fiscals_id"
+  add_foreign_key "ufs", "fiscals", column: "fiscals_id"
+  add_foreign_key "ufs", "users"
 end

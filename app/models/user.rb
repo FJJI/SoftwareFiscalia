@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :messages
   belongs_to :carabinero, optional: true
   belongs_to :fiscal, optional: true
+  belongs_to :uf, optional: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
