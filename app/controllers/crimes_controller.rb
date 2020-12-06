@@ -25,7 +25,7 @@ class CrimesController < ApplicationController
         total_crimenes = Crime.where("title LIKE ?","%"+params[:q]+"%")
         @uniformados=  Carabinero.where("name LIKE ?","%"+params[:q]+"%")
         #unidad = total_crimenes.where(user_id:)
-        @crimenes = total_crimenes.where(:current_person.id)
+        @crimenes = total_crimenes
 
       end
       if current_person.Fiscal?

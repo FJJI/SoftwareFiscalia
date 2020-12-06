@@ -56,7 +56,7 @@
       opacity: 0.8;
     }
     #cbox .close {
-      background-color: red;
+      background-color: #ff0000;
     }
     #chbtn:hover, .openChatBtn:hover {
       opacity: 1;
@@ -303,7 +303,7 @@
                     <% else %>
                       <td><h2>SIN CONTENIDO</h2></td>
                     <% end %>
-                    <td><%= link_to 'Eliminar',file,method: :DELETE ,class: ["btn", "btn-danger"]%></td>
+                    <td><%= link_to 'Eliminar',file,method: :DELETE ,:data => { :foo_bar => 'Seguro que desea borrar el Archivo?, tu usario sera responasble visible para esta accion' },class: ["btn", "btn-danger"]%></td>
                 <% end %>
                 </tr>
               </table>

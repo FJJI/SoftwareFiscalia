@@ -31,7 +31,7 @@ class FiscalsController < ApplicationController
 
     respond_to do |format|
       if @fiscal.save
-        format.html { redirect_to @fiscal, notice: 'Fiscal was successfully created.' }
+        format.html { redirect_to @fiscal, notice: 'Fiscalia Creada con Exito!' }
         format.json { render :show, status: :created, location: @fiscal }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class FiscalsController < ApplicationController
     @fiscal = Fiscal.find(params[:id])
     respond_to do |format|
       if @fiscal.update(fiscal_params)
-        format.html { redirect_to @fiscal, notice: 'Fiscal was successfully updated.' }
+        format.html { redirect_to @fiscal, notice: 'Fiscalia Actualizada con exito' }
         format.json { render :show, status: :ok, location: @fiscal }
       else
         format.html { render :edit }

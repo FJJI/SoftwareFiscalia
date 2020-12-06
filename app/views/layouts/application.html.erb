@@ -34,10 +34,10 @@
 <!--                  <a class="nav-link" <%#=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white"%></a>-->
                 <%# end %>
                 <% if current_user.Carabinero? %>
-                  <a class="nav-link" <%=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white"%></a>
+                  <a class="nav-link" <%=link_to "Agregar Unidad Policial", new_carabinero_path , :style => "color:white"%></a>
                 <% end %>
                 <% if current_user.Fiscal? %>
-                  <a class="nav-link" <%=link_to "Agregar Fiscal", new_fiscal_path , :style => "color:white"%></a>
+                  <a class="nav-link" <%=link_to "Agregar Fiscalia", new_fiscal_path , :style => "color:white"%></a>
                 <% end %>
               <% end %>
             </li>
