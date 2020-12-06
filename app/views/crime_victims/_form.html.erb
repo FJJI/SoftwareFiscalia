@@ -5,6 +5,10 @@
     <% victims = Victim.all %>
     <%= form.collection_select :victim_id, victims.order(:name),:id,:name, include_blank: true %>
   </li>
+  <li style="list-style: none">
+    <%= form.text_field :relato%>
+    <%= form.label :relato%>
+  </li>
 <%# Victim.all.each do |victim|%>
 <!--  <li style="list-style: none">-->
     <%#= form.label :victim_id, victim.name %>
