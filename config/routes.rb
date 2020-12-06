@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :messages
   get "/search", to: "crimes#search"
   get 'newcrimethief', to: "crime_thiefs#new", as: 'new'
+  get '/pronunciarse/:crime_id', to:"crimes#btop", as: 'btop'
   resources :crime_thiefs
   resources :crime_files
   resources :users
