@@ -33,6 +33,7 @@
             <th >Fecha creación</th>
             <th >Nº Imputados</th>
             <th>Fecha modificación</th>
+            <th>Estado</th>
             <% if signed_in? %>
             <th>Editar</th>
             <th>Ver</th>
@@ -47,6 +48,7 @@
               <td><%= crime.created_at.to_date %></td>
               <td><%= CrimeThief.where(crime_id:crime.id).count %></td>
               <td><%= crime.updated_at.to_date %></td>
+              <td><%= crime.estado %></td>
               <% if signed_in? %>
                 <%# if current_user.Carabinero? %>
                 <td><a class="nav-link" <%= link_to "Editar", edit_crime_path(crime.id),:class => "btn btn-primary"%></a></td>
