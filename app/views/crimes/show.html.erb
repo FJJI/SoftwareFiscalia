@@ -76,7 +76,9 @@
           <h5 class="container-fluid col-6"><%=link_to "Cerrar Caso",btop_path(@crime.id),class: ["btn", "btn-success"]%></h5>
         <%end %>
       <%end %>
-      <h5 class="container-fluid col-6">Fecha: <%= @crime.fecha%></h5>
+      <h5 class="container-fluid col-6">Fecha delito: <%= @crime.fecha.to_date%></h5>
+      <h5 class="container-fluid col-6">Fecha registro procedimiento: <%= @crime.created_at.to_date%></h5>
+      <h5 class="container-fluid col-6">Fecha última actualización del procedimiento: <%= @crime.updated_at.to_date%></h5>
       <h5 class="container-fluid col-6">Delito: <%= @tags.tag%></h5>
       <h5 class="container-fluid col-6">Estado: <%= @crime.estado%></h5>
 <!--      <h6 class="container-fluid col-6">Fiscal a cargo: alguien</h6>-->
