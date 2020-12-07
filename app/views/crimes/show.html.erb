@@ -333,27 +333,27 @@
                     <td><%=file.id%></td>
                     <td><%= file.description%></td>
                     <td><%=file.user.name%></td>
-                    
-                    <% if file.file.representable? %>
-                      <td><embed src=<%= url_for(file.file) %> type="application/pdf" width="100%" height="400px" /></td>
-                      
-                    <% elsif file.file.content_type == "video/mp4"%>
-                      <td>
-                        <div style="width:400px; height:400px">
-                            <%= video_tag(url_for(file.file), style:"width:100%;height: auto", controls:'') %>
-                            <br>
-                        </div>
-                      </td>
-                    <% else %>
-                      <td><h2>SIN CONTENIDO</h2></td>
-                    <% end %>
+
                     <% if file.file.attached?%>
+                    
+                      <% if file.file.representable? %>
+                        <td><embed src=<%= url_for(file.file) %> type="application/pdf" width="100%" height="400px" /></td>
+                        
+                      <% elsif file.file.content_type == "video/mp4"%>
+                        <td>
+                          <div style="width:400px; height:400px">
+                              <%= video_tag(url_for(file.file), style:"width:100%;height: auto", controls:'') %>
+                              <br>
+                          </div>
+                        </td>
+                      <% end %>
+                    
 
                       <td><%= link_to 'Descargar',file.file,class: ["btn", "btn-primary"]%></td>
                     <% else %>
                       <td><h2>SIN CONTENIDO</h2></td>
                     <% end %>
-                    <td><%= link_to 'Eliminar',file,method: :DELETE ,:data => { :foo_bar => 'Seguro que desea borrar el Archivo?, tu usario sera responasble visible para esta accion' },class: ["btn", "btn-danger"]%></td>
+                    <td><%= link_to 'Eliminar',file,method: :DELETE ,:data => { :confirm  => 'Seguro que desea borrar el Archivo?, tu usario sera responasble visible para esta accion' },class: ["btn", "btn-danger"]%></td>
                 <% end %>
                 </tr>
               </table>
