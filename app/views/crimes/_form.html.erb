@@ -102,28 +102,5 @@
         }
     }
 </script>
-<script tpye="text/javascript">
-    var today = new Date();
 
-    var options = {
-        maxDate: new Date(),
-        maxTime: new Date(),
-        disabledTimeIntervals: [
-            [moment(), moment().hour(24).minutes(0).seconds(0)]
-        ],
-        format: 'm/d/Y H:i A',
-        timepicker: true,
-        onChangeDateTime: function(date) {
-            // Here you need to compare date! this is up to you :-)
-            if (date.getDate() === today.getDate()) {
-                this.setOptions({maxTime: new Date()});
-            } else {
-                this.setOptions({maxTime: false});
-            }
-        }
-    };
-  $(function(){
-      $('#datetimepicker').datetimepicker(options);
-  });
-</script>
 </body>
