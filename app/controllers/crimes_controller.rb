@@ -6,6 +6,9 @@ class CrimesController < ApplicationController
     require 'date'
     @date_a = DateTime.now() 
     @crimes = Crime.all
+    @crimes_p = Crime.joins("INNER JOIN users ON users.region = crimes.region WHERE crimes.estado == 'Pendiente'").distinct
+    @crimes_b = Crime.joins("INNER JOIN users ON users.region = crimes.region WHERE crimes.estado == 'Borrador'").distinct
+    @crimes_c = Crime.joins("INNER JOIN users ON users.region = crimes.region WHERE crimes.estado == 'Cerrado'").distinct
     @cops = Carabinero.where(:user_id => current_user.id)
     @fiscales = Fiscal.where(:user_id => current_user.id)
   end
