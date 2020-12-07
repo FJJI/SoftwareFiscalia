@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :ucs
   resources :ufs
   resources :ufcs
+  resources :uccs
   resources :fiscals
   resources :carabineros
   resources :crime_witnesses

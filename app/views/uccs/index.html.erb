@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Uccs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uccs.each do |ucc| %>
+      <tr>
+        <td><%= link_to 'Show', ucc %></td>
+        <td><%= link_to 'Edit', edit_ucc_path(ucc) %></td>
+        <td><%= link_to 'Destroy', ucc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ucc', new_ucc_path %>

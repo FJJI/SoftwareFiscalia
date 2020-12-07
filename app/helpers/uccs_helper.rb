@@ -1,0 +1,2 @@
+module UccsHelper
+end

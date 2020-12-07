@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UcTest < ActiveSupport::TestCase
+class UccTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
