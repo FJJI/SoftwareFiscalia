@@ -53,6 +53,14 @@
           <%= form.collection_select :carabineros_id, Carabinero.all,:id, :name %>
         </div>
 
+        <% if current_user.Fiscal? %>
+        <%= form.hidden_field :fcargo, value: current_user.name %>
+        <% end %>
+        <% if current_user.Carabinero? %>
+          <%= form.hidden_field :ccargo, value: current_user.name %>
+        <% end %>
+
+
         <% if crime.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(crime.errors.count, "error") %> prohibited this crime from being saved:</h2>
