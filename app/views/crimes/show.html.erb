@@ -240,7 +240,7 @@
                 <tr>
                   <td><%= victim.rut%></td>
                   <td><%= victim.name%></td>
-                  <td><%= cws.where(victim_id: victim)[0].relato%></td>
+                  <td><%= cws.where(victim_id: victim)[-1].relato%></td>
                 <tr>
               <%end%>
             </table>
@@ -281,7 +281,7 @@
                 <tr>
                   <td><%= witness.rut%></td>
                   <td><%= witness.name%></td>
-                  <td><%= cws.where(witness_id: witness)[0].relato%></td>
+                  <td><%= cws.where(witness_id: witness)[-1].relato%></td>
                 <tr>
               <%end%>
             </table>
