@@ -123,7 +123,6 @@
       <p class="container-fluid col-6"><%= @crime.description%></p>
 
     </div>
-
     <div class="container-fluid">
       <%@crimethief = CrimeThief.new%>
       <%@thief = Thief.new%>
@@ -174,7 +173,8 @@
                         <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
                           Pronunciarse
                         </button>
-                        <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %>
+                        <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+                      <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %><%end %>
                       </td>
                     <% else %>
                       <td>
@@ -190,7 +190,8 @@
             <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
-                <%= render partial: 'crime_thiefs/form', locals: {crime_thief: @crimethief} %>
+                <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+              <%= render partial: 'crime_thiefs/form', locals: {crime_thief: @crimethief} %><%end %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
@@ -228,7 +229,10 @@
             <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
-                <%= render partial: 'crime_victims/form', locals: {crime_victim: @crimevictim} %>
+                <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+
+              <%= render partial: 'crime_victims/form', locals: {crime_victim: @crimevictim} %>
+                <%end %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
@@ -266,7 +270,9 @@
             <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
-                <%= render partial: 'crime_witnesses/form', locals: {crime_witness: @crimewitness} %>
+                <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+
+              <%= render partial: 'crime_witnesses/form', locals: {crime_witness: @crimewitness} %><%end %>
               </div>
               <h5 class="float-right">+</h5>
               </div>

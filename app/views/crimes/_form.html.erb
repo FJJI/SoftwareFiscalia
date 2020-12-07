@@ -20,6 +20,7 @@
           <%= form.label :title, "Título", class:"pl-2 font-weight-bold" %><br />
           <%= form.text_field :title, class: "form-control" %>
         </div>
+
         <div class="field">
           <%= form.label :labels, "Delito", class:"pl-2 font-weight-bold" %><br />
           <%= form.collection_select :labels, CrimeTag.all,:id, :tag %>
@@ -46,7 +47,10 @@
           <%= form.label :description, "Relato", class:"pl-2 font-weight-bold" %><br />
           <%= form.text_area :description , class: "form-control" %>
         </div>
-
+        <div class="field">
+          <%= form.label :title, "Título", class:"pl-2 font-weight-bold" %><br />
+          <%= form.text_field :title, class: "form-control" %>
+        </div>
         <% if crime.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(crime.errors.count, "error") %> prohibited this crime from being saved:</h2>
