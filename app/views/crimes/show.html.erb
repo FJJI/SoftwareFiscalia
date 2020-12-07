@@ -176,7 +176,14 @@
                     <% flo = "" %>
                     <% flo_crimen = "" %>
                     <% CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).each do |pros| %>
-                      <li><%=pros.marca%></li>
+                      <li>
+                        <div>
+
+                        </div>
+                        <div>
+                          <%=pros.marca%>
+                        </div>
+                      </li>
                       <% flo = pros.thief_id %>
                       <% flo_crimen = pros.crime_id %>
                     <%end%>

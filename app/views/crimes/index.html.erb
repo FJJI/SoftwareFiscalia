@@ -91,7 +91,10 @@
         <% end %>
         </tbody>
       </table>
-
+      <% if signed_in? %>
+        <a class="nav-link float-right btn btn-success" <%= link_to 'Reportar', new_crime_path ,:style =>"color:black"%></a>
+      <% else %>
+      <% end %>
 
     <% elsif current_user.Fiscal? %>
       <h1>Procedimientos Borradores</h1>

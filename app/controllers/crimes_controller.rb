@@ -59,6 +59,9 @@ class CrimesController < ApplicationController
   # GET /crimes/1
   # GET /crimes/1.json
   def show
+    crime_idd = params[:crime_id]
+    @var = TRUE
+    #if CrimeThief.where(crime_id: crime_idd && estado: '')
     @messages = Message.all
     @crime_users = User.all
     @message_crimes = Message.joins(:crime).all
