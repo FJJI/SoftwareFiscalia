@@ -1,0 +1,25 @@
+<%= form_with(model: crime_thief, local: false) do |form| %>
+
+<%# Thief.all.each do |thief|%>
+
+
+
+
+<%# end %>
+  <%= hidden_field_tag 'crime_id', @crime.id  %>
+  <%= form.select :estado, ['Apercibido', 'Audiencia Control de Detención', 'Pendiente'] %>
+  <% if crime_thief.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(crime_thief.errors.count, "error") %> prohibited this crime_thief from being saved:</h2>
+      <ul>
+        <% crime_thief.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit "Actualizar Estado de Imputado" %>
+  </div>
+<% end %>
