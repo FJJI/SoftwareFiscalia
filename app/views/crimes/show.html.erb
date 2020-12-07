@@ -78,9 +78,9 @@
     <div class="d-flex position-fixed" id="sidebar-wrapper">
       <div class="list-group list-group-flush container-fluid">
         <a href="#" class="list-group-item list-group-item-action bg-dark text-white font-italic">Inicio</a>
-        <a href="#multi" class="list-group-item list-group-item-action bg-dark text-white font-italic">Multimedia</a>
+        <a href="#multi" class="list-group-item list-group-item-action bg-dark text-white font-italic">Doc. Adjunto</a>
         <div class="chatWrapp">
-          <button class="openChatBtn position-fixed " onclick="openForm()">Chat</button>
+          <button class="openChatBtn list-group-item list-group-item-action bg-dark text-white font-italic " onclick="openForm()">Chat</button>
           <div class="openChat">
             <form id="cbox">
               <h1 class="text-white">Chat</h1>
@@ -130,36 +130,6 @@
     </div>
 
     <br>
-    <div class="d-flex position-fixed" id="sidebar-wrapper">
-      <div class="list-group list-group-flush container-fluid">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white font-italic">Inicio</a>
-        <a href="#multi" class="list-group-item list-group-item-action bg-dark text-white font-italic">Doc. Adjuntos</a>
-        <div class="chatWrapp">
-          <button class="openChatBtn position-fixed " onclick="openForm()">Chat</button>
-          <div class="openChat">
-            <form id="cbox">
-              <h1 class="text-white">Chat</h1>
-              <label for="msg" class="text-white"><b>Message</b></label>
-                <div id="target" style="overflow: scroll; width: 400px; height: 200px;">
-                    <% @message_crimes.each do |message| %>
-                    <% if message.crime_id == @crime.id %>
-                      <tr>
-                        <%= render partial: 'messages/messages_tile', locals: { message: message } %>
-                      </tr>
-                    <% end %>
-                  <% end %>
--                </div>
-
-                  <%= link_to "Enviar Mensaje", new_message_path(:crime => @crime.id), class: ["btn", "btn-primary"] %>
-                  <button type="button" class="btn |" id="chbtn" onclick="closeForm()">
-                    Close
-                  </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    
     <div class="container-fluid">
       <h3 class="container-fluid col-6">Relato</h3>
       <p class="container-fluid col-6"><%= @crime.description%></p>
