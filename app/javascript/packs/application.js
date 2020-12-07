@@ -17,3 +17,6 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 //=require custom.js
 //= require pronunciarse
+//= require moment
+//= require bootstrap-datetimepicker
+//= require moment/<locale>

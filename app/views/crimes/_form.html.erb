@@ -1,14 +1,13 @@
 <head>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-      $( function() {
-          $( "#datepicker" ).datepicker({ maxDate: new Date, minDate: new Date(2007, 6, 12) });
-      } );
-  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.css" rel="stylesheet" />
+
 </head>
+
 <body>
 <%= form_with(model: crime, local: true) do |form| %>
   <%= include_gon %>
@@ -45,7 +44,8 @@
         </div>
         <div class="field">
           <%= form.label :fecha, "Fecha", class:"pl-2 font-weight-bold" %><br />
-          <%= form.date_field :fecha, id:"datepicker" %>
+          <input type='text' class="form-control" id='datetimepicker' />
+
         </div>
 
         <div class="field">
@@ -98,5 +98,29 @@
             }
         }
     }
+</script>
+<script tpye="text/javascript">
+    var today = new Date();
+
+    var options = {
+        maxDate: new Date(),
+        maxTime: new Date(),
+        disabledTimeIntervals: [
+            [moment(), moment().hour(24).minutes(0).seconds(0)]
+        ],
+        format: 'm/d/Y H:i A',
+        timepicker: true,
+        onChangeDateTime: function(date) {
+            // Here you need to compare date! this is up to you :-)
+            if (date.getDate() === today.getDate()) {
+                this.setOptions({maxTime: new Date()});
+            } else {
+                this.setOptions({maxTime: false});
+            }
+        }
+    };
+  $(function(){
+      $('#datetimepicker').datetimepicker(options);
+  });
 </script>
 </body>
