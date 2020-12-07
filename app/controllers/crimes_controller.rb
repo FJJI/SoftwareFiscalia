@@ -69,6 +69,7 @@ class CrimesController < ApplicationController
 
     # @creado_por = Ucc.where(carabineros_id: @crime.carabineros_id, ).pluck(:carabineros_id).first
      @cp = Carabinero.find(@crime.carabineros_id)
+     @cf = Fiscal.find(@crime.fiscals_id)
 
 
   end
@@ -103,6 +104,7 @@ class CrimesController < ApplicationController
     @crime = Crime.new(crime_params)
     @crime.estado = "Borrador"
     puts(@crime.carabineros_id)
+    puts(@crime.fiscals_id)
     # puts(@comuna_dic[@crime.region])  Todas las comunas
     @crime.comuna = @comuna_dic[@crime.region][@crime.comuna.to_i]
     respond_to do |format|
@@ -156,7 +158,7 @@ class CrimesController < ApplicationController
   end
 
     def crime_params
-      params.fetch(:crime, {}).permit(:title,:labels,:place,:description, :fecha, :comuna, :region, :fcargo, :ccargo ,:clip,:carabineros_id, images:[], files:[])
+      params.fetch(:crime, {}).permit(:title,:labels,:place,:description, :fecha, :comuna, :region, :fcargo, :ccargo ,:clip,:carabineros_id, :fiscals_id,  images:[], files:[])
     end
     def message_params
       params.require(:message).permit(:content, :user_id, :crime_id)

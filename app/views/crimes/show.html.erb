@@ -126,12 +126,10 @@
       <h6 class="container-fluid col-6">Region: <%= @crime.region%></h6>
       <h6 class="container-fluid col-6">Comuna: <%= @crime.comuna%></h6>
       <h6 class="container-fluid col-6">Unidad: <%= @cp.name%></h6>
-      <% if current_user.Fiscal? %>
-        <h6 class="container-fluid col-6">Fiscal a cargo: <%= @crime.fcargo%></h6>
-      <% end %>
-      <% if current_user.Carabinero? %>
-        <h6 class="container-fluid col-6">Carabinero a cargo: <%= @crime.ccargo%></h6>
-      <% end %>
+      <h6 class="container-fluid col-6">Fiscal: <%= @cf.name%></h6>
+
+<!--        <h6 class="container-fluid col-6">Fiscal a cargo: <%#= @crime.fcargo%></h6>-->
+<!--        <h6 class="container-fluid col-6">Carabinero a cargo: <%#= @crime.ccargo%></h6>-->
 
     </div>
 
