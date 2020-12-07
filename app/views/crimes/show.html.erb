@@ -24,10 +24,12 @@
       z-index: 9;
     }
     #cbox {
-      max-width: 420px;
+      max-width: 500px;
       padding: 10px;
       background-color: #343a40;
-      height: 380px
+      height: 700px
+
+
     }
     #cbox textarea {
       width: 100%;
@@ -52,12 +54,19 @@
       font-weight: bold;
       border: none;
       cursor: pointer;
-      width: 60%;
+      width: 40%;
       margin-bottom: 10px;
       opacity: 0.8;
     }
     #cbox .close {
-      background-color: #ff0000;
+      background-color: #ff0000;+
+      height: 8%
+    }
+    #cbox .ebtn {
+      padding: 16px 20px;
+      font-weight: bold;
+      width: 40%;
+      height: 8%
     }
     #chbtn:hover, .openChatBtn:hover {
       opacity: 1;
@@ -66,6 +75,36 @@
 </head>
 <body>
   <main>
+    <div class="d-flex position-fixed" id="sidebar-wrapper">
+      <div class="list-group list-group-flush container-fluid">
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-white font-italic">Inicio</a>
+        <a href="#multi" class="list-group-item list-group-item-action bg-dark text-white font-italic">Multimedia</a>
+        <div class="chatWrapp">
+          <button class="openChatBtn position-fixed " onclick="openForm()">Chat</button>
+          <div class="openChat">
+            <form id="cbox">
+              <h1 class="text-white">Chat</h1>
+              <label for="msg" class="text-white"><b>Message</b></label>
+              <div id="target" style="overflow: scroll; width: 450px; height: 520px;">
+                <% @message_crimes.each do |message| %>
+                  <% if message.crime_id == @crime.id %>
+                    <tr>
+                      <%= render partial: 'messages/messages_tile', locals: { message: message } %>
+                    </tr>
+                  <% end %>
+                <% end %>
+                -                </div>
+
+              <%= link_to "Enviar Mensaje", new_message_path(:crime => @crime.id), class: ["btn", "btn-primary","ebtn"] %>
+              <button type="button" class="btn close" id="chbtn" onclick="closeForm()">
+                Cerrar
+              </button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
     <br>
     <div class="container-fluid">
       <h1 class="container-fluid col-6">Caso N°<%= @crime.id%> <%= @crime.title%></h1>
@@ -91,36 +130,7 @@
     </div>
 
     <br>
-    <div class="d-flex position-fixed" id="sidebar-wrapper">
-      <div class="list-group list-group-flush container-fluid">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white font-italic">Inicio</a>
-        <a href="#multi" class="list-group-item list-group-item-action bg-dark text-white font-italic">Multimedia</a>
-        <div class="chatWrapp">
-          <button class="openChatBtn position-fixed " onclick="openForm()">Chat</button>
-          <div class="openChat">
-            <form id="cbox">
-              <h1 class="text-white">Chat</h1>
-              <label for="msg" class="text-white"><b>Message</b></label>
-                <div id="target" style="overflow: scroll; width: 400px; height: 200px;">
-                    <% @message_crimes.each do |message| %>
-                    <% if message.crime_id == @crime.id %>
-                      <tr>
-                        <%= render partial: 'messages/messages_tile', locals: { message: message } %>
-                      </tr>
-                    <% end %>
-                  <% end %>
--                </div>
 
-                  <%= link_to "Enviar Mensaje", new_message_path(:crime => @crime.id), class: ["btn", "btn-primary"] %>
-                  <button type="button" class="btn close" id="chbtn" onclick="closeForm()">
-                    Close
-                  </button>
-            </form>
-
-          </div>
-        </div>
-      </div>
-    </div>
     
     <div class="container-fluid">
       <h3 class="container-fluid col-6">Relato</h3>
