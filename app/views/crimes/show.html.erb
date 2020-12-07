@@ -94,7 +94,7 @@
     <div class="d-flex position-fixed" id="sidebar-wrapper">
       <div class="list-group list-group-flush container-fluid">
         <a href="#" class="list-group-item list-group-item-action bg-dark text-white font-italic">Inicio</a>
-        <a href="#multi" class="list-group-item list-group-item-action bg-dark text-white font-italic">Multimedia</a>
+        <a href="#multi" class="list-group-item list-group-item-action bg-dark text-white font-italic">Doc. Adjuntos</a>
         <div class="chatWrapp">
           <button class="openChatBtn position-fixed " onclick="openForm()">Chat</button>
           <div class="openChat">
@@ -112,11 +112,10 @@
 -                </div>
 
                   <%= link_to "Enviar Mensaje", new_message_path(:crime => @crime.id), class: ["btn", "btn-primary"] %>
-                  <button type="button" class="btn close" id="chbtn" onclick="closeForm()">
+                  <button type="button" class="btn |" id="chbtn" onclick="closeForm()">
                     Close
                   </button>
             </form>
-
           </div>
         </div>
       </div>
@@ -294,7 +293,7 @@
           %>
           <div class="card text-white bg-dark mb-3" style="margin-top:20px" id="multi">
             <div class="card-header">
-              <h2>Multimedia</h2>
+              <h2>Documentos Adjuntos</h2>
               <%# if current_user.Carabinero? %>
               <div class="float-right">
                 <%= render partial: 'crime_files/form', locals: {crime_file: @crime_file} %>
