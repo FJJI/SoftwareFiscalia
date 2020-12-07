@@ -149,40 +149,41 @@
                 <th>Nombre</th>
                 <th>Alias</th>
                 <th>Delito</th>
+                <th>Estado</th>
                 <% if current_user.Fiscal? %>
-                  <th>Estado</th>
                   <th>Acción</th>
                 <%end%>
               <tr>
-                <% criminals = CrimeThief.where(crime_id:@crime.id).pluck(:thief_id, :pronunciado)%>
-                <% criminals.each do |crim| %>
+                <% criminals = CrimeThief.where(crime_id:@crime.id).distinct.pluck(:thief_id, :pronunciado)%>
+                <% criminals.each_with_index  do |crim, ind| %>
                 <tr>
                   <td><%= Thief.where(id:crim[0])[0].rut%></td>
                   <td><%= Thief.where(id:crim[0])[0].name%></td>
                   <td><%= Thief.where(id:crim[0])[0].alias_list%></td>
                   <td>
-                    <% CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).each do |pros | %>
-                      <%= pros.marca%>
+                    <% CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).each do |pros| %>
+                      • <%= pros.marca%>
                       <br>
                     <%end%>
                   </td>
+                  <td><%= CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).pluck(:estado)[0]%></td>
                   <% if current_user.Fiscal? %>
-                    <td><%= CrimeThief.where(id:crim[0]).pluck(:estado)[0]%></td>
                     <% if !crim[1] %>
                       <td>
-                        <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
-                          Pronunciarse
-                        </button>
-                        <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
-                      <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %><%end %>
+                        <%if current_user.job == "Fiscal"%>
+                          <%= render partial: 'crimes/modal', locals: {crime_thief: CrimeThief.where(thief_id: crim, crime_id:@crime.id)[0]} %>
+                          <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
+                            Pronunciarse
+                          </button>
+                        <%end %>
                       </td>
                     <% else %>
                       <td>
                         <button type="button" class="btn btn-primary disabled" data-toggle="button" aria-pressed="false" autocomplete="off">
                           Listo
                         </button>
-                      </td>
                     <%end%>
+                  </td>
                   <%end%>
                 <tr>
               <%end%>
