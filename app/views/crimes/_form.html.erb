@@ -53,6 +53,11 @@
           <%= form.collection_select :carabineros_id, Carabinero.all,:id, :name %>
         </div>
 
+        <div>
+          <%= form.label :fiscals_id, "Fiscal a cargo", class:"pl-2 font-weight-bold" %><br />
+          <%= form.collection_select :fiscals_id, Fiscal.all,:id, :name %>
+        </div>
+
         <% if current_user.Fiscal? %>
         <%= form.hidden_field :fcargo, value: current_user.name %>
         <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_165910) do
+ActiveRecord::Schema.define(version: 2020_12_07_180209) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -115,7 +115,9 @@ ActiveRecord::Schema.define(version: 2020_12_07_165910) do
     t.integer "carabineros_id"
     t.string "fcargo"
     t.string "ccargo"
+    t.integer "fiscals_id"
     t.index ["carabineros_id"], name: "index_crimes_on_carabineros_id"
+    t.index ["fiscals_id"], name: "index_crimes_on_fiscals_id"
   end
 
   create_table "fiscals", force: :cascade do |t|
@@ -226,6 +228,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_165910) do
   add_foreign_key "crime_witnesses", "crimes"
   add_foreign_key "crime_witnesses", "witnesses"
   add_foreign_key "crimes", "carabineros", column: "carabineros_id"
+  add_foreign_key "crimes", "fiscals", column: "fiscals_id"
   add_foreign_key "fiscals", "users"
   add_foreign_key "uccs", "carabineros", column: "carabineros_id"
   add_foreign_key "uccs", "users"
