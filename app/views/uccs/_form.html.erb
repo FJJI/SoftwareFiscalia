@@ -1,0 +1,27 @@
+<%= form_with(model: ucc, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label "Unidad Policial", class:"pl-2 font-weight-bold" %>
+    <%= form.collection_select :carabineros_id, Carabinero.all,:id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Usuario" , class:"pl-2 font-weight-bold" %>
+    <%= form.collection_select :user_id, User.all,:id, :name %>
+  </div>
+  <% if ucc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ucc.errors.count, "error") %> prohibited this ucc from being saved:</h2>
+
+      <ul>
+        <% ucc.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit "Crear Vinculo" %>
+  </div>
+<% end %>

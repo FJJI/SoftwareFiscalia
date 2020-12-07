@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :fiscals_id , class:"pl-2 font-weight-bold" %>
+    <%= form.label "Fiscalia" , class:"pl-2 font-weight-bold" %>
     <%= form.collection_select :fiscals_id, Fiscal.all,:id, :name %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id , class:"pl-2 font-weight-bold" %>
+    <%= form.label "Usuario" , class:"pl-2 font-weight-bold" %>
     <%= form.collection_select :user_id, User.all,:id, :name %>
   </div>
   <div class="actions">

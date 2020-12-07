@@ -28,7 +28,7 @@ class UfsController < ApplicationController
 
     respond_to do |format|
       if @uf.save
-        format.html { redirect_to @uf, notice: 'Uf was successfully created.' }
+        format.html { redirect_to new_uf_path, notice: 'Union Creada con exito' }
         format.json { render :show, status: :created, location: @uf }
       else
         format.html { render :new }

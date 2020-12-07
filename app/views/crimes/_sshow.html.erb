@@ -21,7 +21,10 @@
       <strong>Descripcion:</strong>
       <%= crime.description %>
     </p>
-
+    <p>
+      <strong>Estado:</strong>
+      <%= crime.estado %>
+    </p>
     <%= link_to 'Revisar', crime_path(crime.id) ,class: ["btn","btn-primary"]%>
   </div><div class="col-3"></div>
 </div>
