@@ -178,7 +178,11 @@
                           Pronunciarse
                         </button>
                         <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
-                      <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %><%end %>
+                          <% puts("ESREEEEE") %>
+
+                          <% puts(CrimeThief.where(id:crim[0])[0].id) %>
+                      <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:pros.id} %>
+                        <%end %>
                       </td>
                     <% else %>
                       <td>
