@@ -66,6 +66,8 @@ class CrimesController < ApplicationController
 
     # @creado_por = Ucc.where(carabineros_id: @crime.carabineros_id, ).pluck(:carabineros_id).first
      @cp = Carabinero.find(@crime.carabineros_id)
+
+
   end
 
   # GET /crimes/new
@@ -73,6 +75,12 @@ class CrimesController < ApplicationController
     @crime = Crime.new
     # @idc = Ucc.where(user_id: current_user.id).pluck(:carabineros_id)
     # @idf = Uf.where(user_id: current_user.id).pluck(:fiscals_id)
+    @comuna_dic = {}
+    @region = Region.all
+    @region.each do |region|
+      @comuna_dic[region.region] = Comuna.where(region_id: region.id).map{|c| c.comuna}
+    end
+    gon.comuna_dic = @comuna_dic
   end
 
   # GET /crimes/1/edit
@@ -83,9 +91,17 @@ class CrimesController < ApplicationController
   # POST /crimes.json
   def create
 
+    @comuna_dic = {}
+    @region = Region.all
+    @region.each do |region|
+      @comuna_dic[region.region] = Comuna.where(region_id: region.id).map{|c| c.comuna}
+    end
+
     @crime = Crime.new(crime_params)
     @crime.estado = "Borrador"
     puts(@crime.carabineros_id)
+    # puts(@comuna_dic[@crime.region])  Todas las comunas
+    @crime.comuna = @comuna_dic[@crime.region][@crime.comuna.to_i]
     respond_to do |format|
       if @crime.save
         format.html { redirect_to @crime, notice: 'Procedimiento creado con éxito.' }

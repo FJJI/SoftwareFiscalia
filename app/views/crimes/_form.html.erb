@@ -11,6 +11,11 @@
 </head>
 <body>
 <%= form_with(model: crime, local: true) do |form| %>
+  <%= include_gon %>
+  <%=coms = {} %>
+  <% comuna_dic.each do | comuna | %>
+    <% coms[comuna[0]] = comuna[1] %>
+  <% end %>
   <div class="container-fluid">
     <div class="row justify-content-center custom-margin">
       <div class="col-sm-6 col-md-4 ">
@@ -26,13 +31,13 @@
           <%= form.collection_select :labels, CrimeTag.all,:id, :tag %>
         </div>
 
-        <div class="field">
+        <div class="field", onchange="aaa()">
           <%= form.label :region, "Region", class:"pl-2 font-weight-bold" %><br />
           <%= form.collection_select :region, Region.all,:region, :region %>
         </div>
         <div class="field">
           <%= form.label :comuna, "Comuna", class:"pl-2 font-weight-bold" %><br />
-          <%= form.collection_select :comuna, Comuna.all,:comuna, :comuna %>
+          <%= form.collection_select :comuna, [],:comuna, :comuna %>
         </div>
         <div class="field">
           <%= form.label :place, "Lugar", class:"pl-2 font-weight-bold" %><br />
@@ -73,4 +78,25 @@
     </div>
   </div>
 <% end %>
+<script>
+    var dic = gon.comuna_dic;
+    window.aaa = function() {
+        var regionList = document.getElementById("crime_region");
+        var comunaList = document.getElementById("crime_comuna");
+        var selectedReg = regionList.options[regionList.selectedIndex].value;
+        while (comunaList.options.length)
+        {
+          comunaList.remove(0);
+        }
+        var comunas = dic[selectedReg];
+        if (comunas)
+        {
+            var i;
+            for (i = 0; i < comunas.length; i++) {
+                var comuna = new Option(comunas[i], i);
+                comunaList.options.add(comuna);
+            }
+        }
+    }
+</script>
 </body>

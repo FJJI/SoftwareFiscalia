@@ -60,3 +60,4 @@ gem 'devise'
 gem 'cancancan'
 
 gem 'file_validators'
+gem 'gon'
