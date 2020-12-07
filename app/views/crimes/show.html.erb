@@ -165,16 +165,22 @@
                   <td><%= Thief.where(id:crim[0])[0].name%></td>
                   <td><%= Thief.where(id:crim[0])[0].alias_list%></td>
                   <td>
+                    <% flo = "" %>
+                    <% flo_crimen = "" %>
                     <% CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).each do |pros| %>
                       <li><%=pros.marca%></li>
+                      <% flo = pros.thief_id %>
+                      <% flo_crimen = pros.crime_id %>
                     <%end%>
                   </td>
-                  <td><%= CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).pluck(:estado)[0]%></td>
+                  <td><%= CrimeThief.where(thief_id:flo, crime_id:flo_crimen).first.estado%></td>
                   <% if current_user.Fiscal? %>
                     <% if !crim[1] %>
                       <td>
+
                         <%if current_user.job == "Fiscal"%>
-                          <%= render partial: 'crimes/modal', locals: {crime_thief: CrimeThief.where(thief_id: crim, crime_id:@crime.id)[0]} %>
+
+                          <%= render partial: 'crime_thiefs/form2',locals: {crime_thief: CrimeThief.where(thief_id: flo, crime_id:flo_crimen).first} %>
                           <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
                             Pronunciarse
                           </button>

@@ -46,9 +46,11 @@ class CrimeThiefsController < ApplicationController
   # PATCH/PUT /crime_thiefs/1
   # PATCH/PUT /crime_thiefs/1.json
   def update
+    cri = @crime_thief.crime_id
+    cre = Crime.where(id:cri).first
     respond_to do |format|
       if @crime_thief.update(crime_thief_params)
-        format.html { redirect_to @crime_thief, notice: 'Procedimiento actualizado con éxito.' }
+        format.html { redirect_to cre, notice: 'Cambio de estado exitoso!' }
         format.json { render :show, status: :ok, location: @crime_thief }
       else
         format.html { render :edit }
