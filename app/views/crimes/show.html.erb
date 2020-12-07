@@ -166,8 +166,7 @@
                   <td><%= Thief.where(id:crim[0])[0].alias_list%></td>
                   <td>
                     <% CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).each do |pros| %>
-                      • <%= pros.marca%>
-                      <br>
+                      <li><%=pros.marca%></li>
                     <%end%>
                   </td>
                   <td><%= CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).pluck(:estado)[0]%></td>
