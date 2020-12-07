@@ -18,7 +18,8 @@
               <% if signed_in? %>
                 <% if current_user.Carabinero? || current_user.Fiscal? %>
                   <a class="nav-link" <%=link_to "Nuevo procedimiento", new_crime_path, :style => "color:white"%></a>
-                <% end %>
+
+            <% end %>
               <% end %>
             </li>
 <!--            <li class="nav-item">-->
@@ -30,15 +31,28 @@
 <!--            </li>-->
             <li class="nav-item">
               <% if signed_in? %>
-                <%# if current_user.Admin? %>
+                <% if current_user.Carabinero?%>
+                    <% c_id = Ucc.where(user_id:current_user.id).first %>
+                  <%d = Carabinero.where(id:c_id.carabineros_id).first.name %>
+                  <a class="nav-link" <%=link_to d, new_crime_path, :style => "color:white"%></a>
+
+            <% end %>
+                <% if signed_in? %>
+                  <% if current_user.Fiscal?%>
+                    <%begin %>
+                    <% c_id = Uf.where(user_id:current_user.id).first %>
+                    <%d = Fiscal.where(id:c_id.fiscals_id).first.name %>
+                      <a class="nav-link" <%=link_to d, new_crime_path, :style => "color:white"%></a>
+<%rescue%>
+                  <% end %>
+                  <% end %>
+
+                  <%# if current_user.Admin? %>
 <!--                  <a class="nav-link" <%#=link_to "Agregar Carabinero", new_carabinero_path , :style => "color:white"%></a>-->
                 <%# end %>
-                <% if current_user.Carabinero? %>
-                  <a class="nav-link" <%=link_to "Agregar Unidad Policial", new_carabinero_path , :style => "color:white"%></a>
-                <% end %>
-                <% if current_user.Fiscal? %>
-                  <a class="nav-link" <%=link_to "Agregar Fiscalia", new_fiscal_path , :style => "color:white"%></a>
-                <% end %>
+
+
+              <% end %>
               <% end %>
             </li>
           </ul>

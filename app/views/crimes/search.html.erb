@@ -30,14 +30,15 @@
           <%tot = CrimeVictim.where(victim_id:victim.id).count %>
           <div class="card-body">
             <h5 class="card-title">Victima</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Aparece en
+            <h6 class="card-subtitle mb-2 text-muted">Ultima vez registrada en
               <% if tot >0%>
-                <%= CrimeVictim.where(victim_id:victim.id).pluck(:crime_id) %>
+                <%= Crime.where(id:CrimeVictim.where(victim_id:victim.id).pluck(:crime_id)).first.title %>
               <%else %>
                 0 Registros</h6>
 
             <%end %>
-              </h6>
+              </h6>            <h6 class="card-subtitle mb-2 text-muted">Aparece en <%=CrimeVictim.where(victim_id:victim.id).count %> casos</h6>
+
               <%= render :partial => "victims/sshow", :locals => { :victim => victim }  %>
         </div>
         </div>
