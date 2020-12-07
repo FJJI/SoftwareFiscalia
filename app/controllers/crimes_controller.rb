@@ -9,6 +9,24 @@ class CrimesController < ApplicationController
     @cops = Carabinero.where(:user_id => current_user.id)
     @fiscales = Fiscal.where(:user_id => current_user.id)
   end
+
+  def btop
+    crime_idd = params[:crime_id]
+    crime_buffer = Crime.where(id:crime_idd).first
+    if crime_buffer.estado == "Borrador"
+      crime_buffer.estado = "Pendiente"
+      crime_buffer.save!
+
+    elsif crime_buffer.estado == "Pendiente"
+      crime_buffer.estado = "Cerrado"
+      crime_buffer.save!
+    end
+    respond_to do |format|
+      format.html { redirect_to crime_buffer, notice: 'Cambio de estado exitoso.' }
+      format.json { render :show, status: :created, location: @crime }
+    end
+  end
+
   def search
     if params[:q] != ""
       data = params[:q]
@@ -58,7 +76,7 @@ class CrimesController < ApplicationController
   def create
 
     @crime = Crime.new(crime_params)
-
+    @crime.estado = "Borrador"
     respond_to do |format|
       if @crime.save
         format.html { redirect_to @crime, notice: 'Procedimiento creado con éxito.' }
@@ -110,7 +128,7 @@ class CrimesController < ApplicationController
   end
 
     def crime_params
-      params.fetch(:crime, {}).permit(:title,:labels,:place,:description,:comuna, :region ,:clip, images:[], files:[])
+      params.fetch(:crime, {}).permit(:title,:labels,:place,:description, :fecha, :comuna, :region ,:clip,:carabineros_id, images:[], files:[] )
     end
     def message_params
       params.require(:message).permit(:content, :user_id, :crime_id)

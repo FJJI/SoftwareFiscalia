@@ -4,7 +4,10 @@
     <% witnesses = Witness.all %>
     <%= form.collection_select :witness_id, witnesses.order(:name),:id,:name, include_blank: true %>
   </li>
-
+  <li style="list-style: none">
+    <%= form.text_field :relato%>
+    <%= form.label :relato%>
+  </li>
 <%# Witness.all.each do |witness|%>
 <!--  <li style="list-style: none">-->
     <%#= form.label :witness_id, witness.name %>

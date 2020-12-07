@@ -69,7 +69,19 @@
     <br>
     <div class="container-fluid">
       <h1 class="container-fluid col-6">Caso N°<%= @crime.id%> <%= @crime.title%></h1>
+        <% if @crime.estado == "Borrador"%>
+          <h5 class="container-fluid col-6"><%=link_to "Confirmar Borrador",btop_path(@crime.id),class: ["btn", "btn-success"]%></h5>
+    <%end %>
+      <% if current_user.job == "Fiscal"%>
+        <% if @crime.estado == "Pendiente"%>
+          <h5 class="container-fluid col-6"><%=link_to "Cerrar Caso",btop_path(@crime.id),class: ["btn", "btn-success"]%></h5>
+        <%end %>
+      <%end %>
+      <h5 class="container-fluid col-6">Fecha procedimiento: <%= @crime.fecha.to_date%></h5>
+      <h5 class="container-fluid col-6">Fecha registro procedimiento: <%= @crime.created_at.to_date%></h5>
+      <h5 class="container-fluid col-6">Fecha última actualización del procedimiento: <%= @crime.updated_at.to_date%></h5>
       <h5 class="container-fluid col-6">Delito: <%= @tags.tag%></h5>
+      <h5 class="container-fluid col-6">Estado: <%= @crime.estado%></h5>
 <!--      <h6 class="container-fluid col-6">Fiscal a cargo: alguien</h6>-->
 <!--      <h6 class="container-fluid col-6">Carabinero a cargo: alguien</h6>-->
       <h6 class="container-fluid col-6">Lugar del hecho: <%= @crime.place%></h6>
@@ -115,7 +127,6 @@
       <p class="container-fluid col-6"><%= @crime.description%></p>
 
     </div>
-
     <div class="container-fluid">
       <%@crimethief = CrimeThief.new%>
       <%@thief = Thief.new%>
@@ -150,10 +161,15 @@
                 <% criminals = CrimeThief.where(crime_id:@crime.id).pluck(:thief_id, :pronunciado)%>
                 <% criminals.each do |crim| %>
                 <tr>
-                  <td><%= Thief.where(id:crim[0]).pluck(:rut)[0]%></td>
-                  <td><%= Thief.where(id:crim[0]).pluck(:name)[0]%></td>
-                  <td><%= Thief.where(id:crim[0]).pluck(:alias_list)[0]%></td>
-                  <td><%= CrimeThief.where(thief_id:crim[0]).pluck(:marca)[-1]%></td>
+                  <td><%= Thief.where(id:crim[0])[0].rut%></td>
+                  <td><%= Thief.where(id:crim[0])[0].name%></td>
+                  <td><%= Thief.where(id:crim[0])[0].alias_list%></td>
+                  <td>
+                    <% CrimeThief.where(thief_id:crim[0], crime_id:@crime.id).each do |pros | %>
+                      <%= pros.marca%>
+                      <br>
+                    <%end%>
+                  </td>
                   <% if current_user.Fiscal? %>
                     <td><%= CrimeThief.where(id:crim[0]).pluck(:estado)[0]%></td>
                     <% if !crim[1] %>
@@ -161,7 +177,8 @@
                         <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
                           Pronunciarse
                         </button>
-                        <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %>
+                        <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+                      <%= render partial: 'crimes/modal', locals: {thief: CrimeThief.where(id:crim[0])[0]} %><%end %>
                       </td>
                     <% else %>
                       <td>
@@ -177,7 +194,8 @@
             <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
-                <%= render partial: 'crime_thiefs/form', locals: {crime_thief: @crimethief} %>
+                <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+              <%= render partial: 'crime_thiefs/form', locals: {crime_thief: @crimethief} %><%end %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
@@ -200,21 +218,25 @@
               <tr>
                 <th>Rut</th>
                 <th>Nombre</th>
-                <th>Detalle</th>
+                <th>Relato</th>
               <tr>
                 <% victim_ids = CrimeVictim.where(crime_id: @crime.id).pluck(:victim_id)%>
+                <% cws = CrimeVictim.where(crime_id: @crime.id, victim_id: victim_ids)%>
                 <% Victim.where(id:victim_ids).each do |victim|%>
                 <tr>
                   <td><%= victim.rut%></td>
                   <td><%= victim.name%></td>
-                  <td><%= victim.detalle%></td>
+                  <td><%= cws.where(victim_id: victim)[0].relato%></td>
                 <tr>
               <%end%>
             </table>
             <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
-                <%= render partial: 'crime_victims/form', locals: {crime_victim: @crimevictim} %>
+                <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+
+              <%= render partial: 'crime_victims/form', locals: {crime_victim: @crimevictim} %>
+                <%end %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
@@ -237,21 +259,24 @@
               <tr>
                 <th>Rut</th>
                 <th>Nombre</th>
-                <th>Detalle</th>
+                <th>Relato</th>
               <tr>
                 <% witness_ids = CrimeWitness.where(crime_id: @crime.id).pluck(:witness_id)%>
+                <% cws = CrimeWitness.where(crime_id: @crime.id, witness_id: witness_ids)%>
                 <% Witness.where(id:witness_ids).each do |witness|%>
                 <tr>
                   <td><%= witness.rut%></td>
                   <td><%= witness.name%></td>
-                  <td><%= witness.detalle%></td>
+                  <td><%= cws.where(witness_id: witness)[0].relato%></td>
                 <tr>
               <%end%>
             </table>
             <%# if current_user.Carabinero? %>
               <div>
               <div class="float-right">
-                <%= render partial: 'crime_witnesses/form', locals: {crime_witness: @crimewitness} %>
+                <%if current_user.job == "Fiscal" or @crime.estado == "Borrador" %>
+
+              <%= render partial: 'crime_witnesses/form', locals: {crime_witness: @crimewitness} %><%end %>
               </div>
               <h5 class="float-right">+</h5>
               </div>
