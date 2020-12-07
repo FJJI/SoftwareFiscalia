@@ -3,6 +3,7 @@ class User < ApplicationRecord
   belongs_to :carabinero, optional: true
   belongs_to :fiscal, optional: true
   belongs_to :uf, optional: true
+  has_one :ucc
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

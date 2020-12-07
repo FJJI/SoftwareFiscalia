@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_165910) do
     t.integer "crime_id"
   end
 
-  create_table "regions", force: :cascade do |t|
+  create_table "regions", force: :cascade do |SQLite3::SQLException: no such column: t|
     t.string "region"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
