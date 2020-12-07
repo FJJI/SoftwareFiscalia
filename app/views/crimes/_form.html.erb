@@ -1,3 +1,14 @@
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+      $( function() {
+          $( "#datepicker" ).datepicker();
+      } );
+  </script>
+</head>
 <body>
 <%= form_with(model: crime, local: true) do |form| %>
   <div class="container-fluid">
@@ -25,6 +36,10 @@
         <div class="field">
           <%= form.label :place, "Lugar", class:"pl-2 font-weight-bold" %><br />
           <%= form.text_field :place, class: "form-control" %>
+        </div>
+        <div class="field">
+          <%= form.label :fecha, "Fecha", class:"pl-2 font-weight-bold" %><br />
+          <%= form.date_field :fecha, id:"datepicker" %>
         </div>
 
         <div class="field">
