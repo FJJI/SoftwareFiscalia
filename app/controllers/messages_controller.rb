@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to root_path, notice: 'Message was successfully created.' }
+        format.html { redirect_to crime_path(@message.crime_id), notice: 'Message was successfully created.' }
         format.json { render :show , status: :created, location: @message }
       else
         format.html { render :new }

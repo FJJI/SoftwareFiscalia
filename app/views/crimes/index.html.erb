@@ -69,51 +69,51 @@
         <br>
         <br>
 
-      <% if current_user.Carabinero?%>
-        <h1>Carabineros en la unidad <%= current_user.name %></h1>
-        <table class="table table-striped table-dark table-responsive-sm">
-          <thead>
-          <tr>
-            <th >Nombre</th>
-            <th >Contacto</th>
-            <th >Email</th>
-          </tr>
-          </thead>
+      <%# if current_user.Carabinero?%>
+<!--        <h1>Carabineros en la unidad <%#= current_user.name %></h1>-->
+<!--        <table class="table table-striped table-dark table-responsive-sm">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th >Nombre</th>-->
+<!--            <th >Contacto</th>-->
+<!--            <th >Email</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
 
-          <tbody>
-          <% @cops.each do |cop| %>
-            <tr>
-              <td><%= cop.name %></td>
-              <td><%= cop.phone %></td>
-              <td><%= cop.email %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      <% end %>
+<!--          <tbody>-->
+          <%# @cops.each do |cop| %>
+<!--            <tr>-->
+<!--              <td><%#= cop.name %></td>-->
+<!--              <td><%#= cop.phone %></td>-->
+<!--              <td><%#= cop.email %></td>-->
+<!--            </tr>-->
+          <%# end %>
+<!--          </tbody>-->
+<!--        </table>-->
+      <%# end %>
 
-      <% if current_user.Fiscal?%>
-        <h1>Fiscales pertenecientes a <%= current_user.name %></h1>
-        <table class="table table-striped table-dark table-responsive-sm">
-          <thead>
-          <tr>
-            <th >Nombre</th>
-            <th >Contacto</th>
-            <th >Email</th>
-          </tr>
-          </thead>
+      <%# if current_user.Fiscal?%>
+<!--        <h1>Fiscales pertenecientes a <%#= current_user.name %></h1>-->
+<!--        <table class="table table-striped table-dark table-responsive-sm">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th >Nombre</th>-->
+<!--            <th >Contacto</th>-->
+<!--            <th >Email</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
 
-          <tbody>
-          <% @fiscales.each do |fis| %>
-            <tr>
-              <td><%= fis.name %></td>
-              <td><%= fis.phone %></td>
-              <td><%= fis.email %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      <% end %>
+<!--          <tbody>-->
+          <%# @fiscales.each do |fis| %>
+<!--            <tr>-->
+<!--              <td><%#= fis.name %></td>-->
+<!--              <td><%#= fis.phone %></td>-->
+<!--              <td><%#= fis.email %></td>-->
+<!--            </tr>-->
+          <%# end %>
+<!--          </tbody>-->
+<!--        </table>-->
+      <%# end %>
 
 
     <% end %>

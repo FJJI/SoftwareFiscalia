@@ -37,13 +37,13 @@
 
       <div>
         <% if signed_in? %>
-          <% if current_user.Admin? %>
-            <%= form.label :user_id , class:"pl-2 font-weight-bold"%>
-            <%= form.collection_select :user_id, User.all,:id, :name %>
-          <% end %>
-          <% if current_user.Carabinero? %>
+          <%# if current_user.Admin? %>
+            <%#= form.label :user_id , class:"pl-2 font-weight-bold"%>
+            <%#= form.collection_select :user_id, User.all,:id, :name %>
+          <%# end %>
+          <%# if current_user.Carabinero? %>
             <%= form.hidden_field :user_id, value: current_user.id %>
-          <% end %>
+          <%# end %>
         <% end %>
       </div>
 

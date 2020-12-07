@@ -60,11 +60,16 @@ class CrimesController < ApplicationController
     @crime_users = User.all
     @message_crimes = Message.joins(:crime).all
     @tags = CrimeTag.find(@crime.labels)
+
+    # @creado_por = Ucc.where(carabineros_id: @crime.carabineros_id, ).pluck(:carabineros_id).first
+     @cp = Carabinero.find(@crime.carabineros_id)
   end
 
   # GET /crimes/new
   def new
     @crime = Crime.new
+    # @idc = Ucc.where(user_id: current_user.id).pluck(:carabineros_id)
+    # @idf = Uf.where(user_id: current_user.id).pluck(:fiscals_id)
   end
 
   # GET /crimes/1/edit
@@ -77,6 +82,7 @@ class CrimesController < ApplicationController
 
     @crime = Crime.new(crime_params)
     @crime.estado = "Borrador"
+    puts(@crime.carabineros_id)
     respond_to do |format|
       if @crime.save
         format.html { redirect_to @crime, notice: 'Procedimiento creado con éxito.' }
