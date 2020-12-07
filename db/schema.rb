@@ -12,6 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2020_12_06_235328) do
 
+
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_235328) do
     t.integer "victim_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "relato"
     t.index ["crime_id"], name: "index_crime_victims_on_crime_id"
     t.index ["victim_id"], name: "index_crime_victims_on_victim_id"
   end
@@ -95,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_235328) do
     t.integer "witness_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "relato"
     t.index ["crime_id"], name: "index_crime_witnesses_on_crime_id"
     t.index ["witness_id"], name: "index_crime_witnesses_on_witness_id"
   end

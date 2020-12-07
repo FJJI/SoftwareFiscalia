@@ -17,10 +17,6 @@
           <%= form.label :age, "Edad", class:"pl-2 font-weight-bold" %><br />
           <%= form.number_field :age , class: "form-control" %>
         </div>
-        <div class="field">
-          <%= form.label :detalle, "Descripcion", class:"pl-2 font-weight-bold" %><br />
-          <%= form.text_field :detalle , class: "form-control" %>
-        </div>
         <% if witness.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(witness.errors.count, "error") %> prohibited this witness from being saved:</h2>
