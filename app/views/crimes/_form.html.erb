@@ -47,10 +47,12 @@
           <%= form.label :description, "Relato", class:"pl-2 font-weight-bold" %><br />
           <%= form.text_area :description , class: "form-control" %>
         </div>
-        <div class="field">
-          <%= form.label :title, "Título", class:"pl-2 font-weight-bold" %><br />
-          <%= form.text_field :title, class: "form-control" %>
+
+        <div>
+          <%= form.label :carabineros_id, "Unidad a cargo", class:"pl-2 font-weight-bold" %><br />
+          <%= form.collection_select :carabineros_id, Carabinero.all,:id, :name %>
         </div>
+
         <% if crime.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(crime.errors.count, "error") %> prohibited this crime from being saved:</h2>
