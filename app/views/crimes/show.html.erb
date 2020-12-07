@@ -181,9 +181,9 @@
                         <%if current_user.job == "Fiscal"%>
 
                           <%= render partial: 'crime_thiefs/form2',locals: {crime_thief: CrimeThief.where(thief_id: flo, crime_id:flo_crimen).first} %>
-                          <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">
-                            Pronunciarse
-                          </button>
+<!--                          <button type="button" class="btn btn-primary" data-target="#pronunciarseModal" data-toggle="modal" aria-pressed="false" autocomplete="off">-->
+<!--                            Pronunciarse-->
+<!--                          </button>-->
                         <%end %>
                       </td>
                     <% else %>
